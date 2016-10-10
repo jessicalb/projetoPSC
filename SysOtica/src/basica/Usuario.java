@@ -2,8 +2,10 @@ package basica;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -14,11 +16,14 @@ import javax.persistence.Temporal;
 public abstract class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
     private String nome;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
+    private String funcao;
+    
+    @Column(length =11)
     private String cpf;
     private String telefone;
     private String email;
@@ -87,6 +92,14 @@ public abstract class Usuario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
 
 }
