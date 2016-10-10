@@ -6,11 +6,18 @@
 package basica;
 
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -21,6 +28,7 @@ public class Pedido {
     
     @Id
     @GeneratedValue
+    @Column(name="idPedido")
     private Integer id;
     private Double valorTotal;
     
@@ -28,6 +36,22 @@ public class Pedido {
     private Date dataVenda;
     private String formaPagamento;
     
+    
+    @ManyToOne
+    @JoinColumn(name = "idCliente", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private Cliente cliente;
+    
+    @ManyToOne
+    @JoinColumn(name = "idReceita", insertable = true, nullable = true)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private Receita receita;
+    
+    
+    
+    public Pedido(){}
     
 
     public Integer getId() {
@@ -60,6 +84,22 @@ public class Pedido {
 
     public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Receita getReceita() {
+        return receita;
+    }
+
+    public void setReceita(Receita receita) {
+        this.receita = receita;
     }
     
 }

@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Fornecedor {
     
     @Id
     @GeneratedValue
+    @Column(name="idFornecedor")
     private Integer id;
     private String nomeFantasia;
     private String telefone;
@@ -27,6 +30,14 @@ public class Fornecedor {
     
     @Column(length = 14)
     private String cnpj;
+    
+    
+    @OneToOne
+    @JoinColumn(name= "idEndereco")
+    private Endereco endereco;
+    
+    
+    public Fornecedor(){}
 
     public Integer getId() {
         return id;
@@ -74,6 +85,14 @@ public class Fornecedor {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
     
     

@@ -5,11 +5,21 @@
  */
 package basica;
 
+import java.util.Collection;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -20,6 +30,7 @@ public class Receita {
     
     @Id
     @GeneratedValue
+    @Column(name = "idReceita")
     private Integer id;
     private Double rc_lodesferico;
     private Double rc_loeesferico;
@@ -51,6 +62,18 @@ public class Receita {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date rc_dataVencimento;
 
+    @ManyToOne
+    @JoinColumn(name = "idCliente", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private Cliente cliente;
+    
+    //uma receita pode estar em vários pedidos
+    @OneToMany(mappedBy = "receita", fetch = FetchType.LAZY)
+    private Collection<Pedido> pedidos;
+    
+    
+    public Receita(){}
     
     public Integer getId() {
         return id;
@@ -299,6 +322,22 @@ public class Receita {
    
     public void setRc_dataVencimento(Date rc_dataVencimento) {
         this.rc_dataVencimento = rc_dataVencimento;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Collection<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Collection<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
     
 }

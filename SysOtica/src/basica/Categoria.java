@@ -5,6 +5,7 @@
  */
 package basica;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,11 +19,12 @@ public class Categoria {
     
     @Id
     @GeneratedValue
+    @Column(name="idCategoria")
     private Integer id;
     private String descricao;
     
     
-    
+    public Categoria(){}
 
     public Integer getId() {
         return id;

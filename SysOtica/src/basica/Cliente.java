@@ -5,11 +5,19 @@
  */
 package basica;
 
+import java.util.Collection;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -20,8 +28,10 @@ public class Cliente {
     
     @Id
     @GeneratedValue
+    @Column(name= "idCliente")
     private Integer id;
    
+    
     private String nome;
     
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -33,6 +43,25 @@ public class Cliente {
     private String observacoes;
     private String nomepai;
     private String nomemae;
+    
+    
+    
+    @OneToOne
+    @JoinColumn(name= "idEndereco")
+    private Endereco endereco;
+    
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @Cascade(CascadeType.ALL)
+    private Collection<Receita> receitas;
+    
+    
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    private Collection<Pedido> pedidos;
+    
+    
+    
+    
+    public Cliente (){}
 
     
     public Integer getId() {
@@ -132,6 +161,30 @@ public class Cliente {
     
     public void setNomemae(String nomemae) {
         this.nomemae = nomemae;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public Collection<Receita> getReceitas() {
+        return receitas;
+    }
+
+    public void setReceitas(Collection<Receita> receitas) {
+        this.receitas = receitas;
+    }
+
+    public Collection<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Collection<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
     
     

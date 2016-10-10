@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/basica/Cliente.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/basica/Gerente.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/basica/Receita.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/gui/Main.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/basica/Atendente.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/basica/Usuario.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/SysOtica/src/basica/Endereco.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/basica/Cliente.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/basica/Fornecedor.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/basica/Receita.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/basica/Produto.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/gui/Main.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/basica/Pedido.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/basica/Usuario.java</file>
+            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/basica/Categoria.java</file>
         </group>
     </open-files>
 </project-private>

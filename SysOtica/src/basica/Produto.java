@@ -5,9 +5,12 @@
  */
 package basica;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -19,15 +22,24 @@ public class Produto {
     
     @Id
     @GeneratedValue
+    @Column(name = "idProduto")
     private Integer id;
     private String descricao;
     private String marca;
     private Double valorUnidade;
     private Integer qtdEstoque;
     private Integer estoqueMinimo;
+    
+    @ManyToOne
+    @JoinColumn(name = "idCategoria")
+    private Categoria categoria; 
+    
+    @ManyToOne
+    @JoinColumn(name = "idFornecedor")
+    private Fornecedor fornecedor;
 
     
-    
+    public Produto(){}
     
     public Integer getId() {
         return id;
@@ -75,6 +87,22 @@ public class Produto {
 
     public void setEstoqueMinimo(Integer estoqueMinimo) {
         this.estoqueMinimo = estoqueMinimo;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
     
     

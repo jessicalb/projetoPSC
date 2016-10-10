@@ -1,21 +1,35 @@
 package basica;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Endereco implements Serializable {
 
+    
+
     @Id
     @GeneratedValue
+    @Column(name = "idEndereco")
     private Integer id;
     private String logradouro;
     private Integer numero;
     private String bairro;
     private String cidade;
     private String estado;
+    
+   
+    
+    @OneToOne(mappedBy = "endereco")
+    private Cliente cliente;
+    
+    @OneToOne(mappedBy = "endereco")
+    private Fornecedor fornecedor;
 
     public Integer getId() {
         return id;
@@ -63,6 +77,22 @@ public class Endereco implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
     
     
