@@ -5,12 +5,16 @@
  */
 package basica;
 
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,12 +33,16 @@ public class Pedido {
     @Id
     @GeneratedValue
     @Column(name="idPedido")
-    private Integer id;
-    private Double valorTotal;
+     private Integer id;
+     private Double valorTotal;
+     private String formaPagamento;
+     
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", insertable = true, updatable = true)
+    @Fetch(FetchMode.JOIN)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private Funcionario Funcionario;
     
-    @Temporal(TemporalType.DATE)
-    private Date dataVenda;
-    private String formaPagamento;
     
     
     @ManyToOne
@@ -49,6 +57,11 @@ public class Pedido {
     @Cascade(CascadeType.SAVE_UPDATE)
     private Receita receita;
     
+   
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="produto_pedido", joinColumns={@JoinColumn(name="idPedido")},
+    inverseJoinColumns ={@JoinColumn(name="idProduto")})
+    private Collection<Produto> produtos;
     
     
     public Pedido(){}
@@ -70,13 +83,7 @@ public class Pedido {
         this.valorTotal = valorTotal;
     }
 
-    public Date getDataVenda() {
-        return dataVenda;
-    }
-
-    public void setDataVenda(Date dataVenda) {
-        this.dataVenda = dataVenda;
-    }
+  
 
     public String getFormaPagamento() {
         return formaPagamento;
@@ -101,5 +108,23 @@ public class Pedido {
     public void setReceita(Receita receita) {
         this.receita = receita;
     }
+
+    public Collection<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(Collection<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public Funcionario getFuncionario() {
+        return Funcionario;
+    }
+
+    public void setFuncionario(Funcionario Funcionario) {
+        this.Funcionario = Funcionario;
+    }
+
+    
     
 }

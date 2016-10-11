@@ -54,12 +54,7 @@ public class Cliente {
     @Cascade(CascadeType.ALL)
     private Collection<Receita> receitas;
     
-    
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
-    private Collection<Pedido> pedidos;
-    
-    
-    
+
     
     public Cliente (){}
 
@@ -179,14 +174,7 @@ public class Cliente {
         this.receitas = receitas;
     }
 
-    public Collection<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(Collection<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-    
+   
     
     
 }

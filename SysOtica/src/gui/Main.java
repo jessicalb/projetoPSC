@@ -1,15 +1,18 @@
 package gui;
 
-import basica.Atendente;
+import basica.Funcionario;
 import basica.Categoria;
 import basica.Cliente;
 import basica.Endereco;
 import basica.Fornecedor;
-import basica.Gerente;
 import basica.Pedido;
 import basica.Produto;
 import basica.Receita;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -18,7 +21,7 @@ import javax.persistence.Persistence;
 
 public class Main {
 
-    public static void main(String agrs[]) {
+    public static void main(String agrs[]) throws ParseException {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatetest");
         EntityManager em = emf.createEntityManager();
@@ -28,24 +31,18 @@ public class Main {
         et.begin();
         
         
-        Atendente at = new Atendente();
-        at.setNome("Carlos");
-        at.setCpf("09061139465");
-        at.setFuncao("Vendedor");
-        at.setLogin("karlinhos16");
-        at.setSenha("12345");
+        Funcionario fun = new Funcionario();
+        fun.setNome("Carlos");
+        fun.setCpf("09061139465");
+        fun.setCargo("Atendente");
+        fun.setLogin("karlinhos16");
+        fun.setSenha("12345");
+        
         
   
-        em.persist(at);
+        em.persist(fun);
         
-        Gerente ge = new Gerente();
-        ge.setNome("Diego");
-        ge.setFuncao("Gerente");
-        ge.setCpf("00044455588");
-        ge.setLogin("diegoMendes");
-        ge.setSenha("123");
-        
-        em.persist(ge);
+      
         
         Categoria cat = new Categoria();
         cat.setDescricao("oculos");
@@ -92,13 +89,16 @@ public class Main {
         
         em.persist(prod);
         
+        Produto prod2 = new Produto();
+        prod2.setDescricao("Lentes Transitions");
+        prod2.setCategoria(cat);
+        prod2.setEstoqueMinimo(10);
+        prod2.setMarca("Visao");
+        prod2.setValorUnidade(60.00);
+        prod2.setFornecedor(forn);
+        em.persist(prod2);
+        
  
-        Pedido ped = new Pedido();
-        ped.setFormaPagamento("Cartao");
-        ped.setValorTotal(100.00);
-        
-        
-        em.persist(ped);
         
         
         
@@ -125,13 +125,50 @@ public class Main {
         em.persist(rec);
         em.persist(rec1);
         
-        //ArrayList <Receita> novas = new ArrayList<>();
-        //novas.add(rec);
-        //novas.add(rec1);
+        ArrayList <Produto> novas = new ArrayList<>();
+        novas.add(prod);
+        novas.add(prod2);
+        
+        
+        DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+        Date data = df.parse("11/10/2016");
+        
+        Pedido p = new Pedido();
+        p.setCliente(cli);
+        p.setFormaPagamento("cartao");
+        p.setReceita(rec1);
+        p.setValorTotal(100.00);
+        p.setProdutos(novas);
+       p.setFuncionario(fun);
         
       
-      
-
+        em.persist(p);
+        
+        
+        
+       
+        /*ProdutoPedidoPK pk = new ProdutoPedidoPK();
+        pk.setProduto(prod);
+        pk.setPedido(p);
+        ProdutoPedido pd = new ProdutoPedido();
+        pd.setChaveComposta(pk);
+        pd.setDataVenda(data);
+        pd.setQuantidade(2);
+        em.persist(pd);
+        
+        ProdutoPedidoPK pk1 = new ProdutoPedidoPK();
+        pk1.setPedido(p);
+        pk1.setProduto(prod2);
+        ProdutoPedido pd1 = new ProdutoPedido();
+        pd1.setChaveComposta(pk1);
+        pd1.setDataVenda(data);
+        pd1.setQuantidade(3);
+        em.persist(pd1);*/
+        
+        
+        
+        
+       
         et.commit();
 
         em.close();

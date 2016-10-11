@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Usuario implements Serializable {
@@ -21,14 +22,14 @@ public abstract class Usuario implements Serializable {
     private String nome;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
-    private String funcao;
+  
     
     @Column(length =11)
     private String cpf;
     private String telefone;
     private String email;
-    private String login;
-    private String senha;
+    
+   
 
     public Integer getId() {
         return id;
@@ -76,30 +77,6 @@ public abstract class Usuario implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getFuncao() {
-        return funcao;
-    }
-
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
     }
 
 }
