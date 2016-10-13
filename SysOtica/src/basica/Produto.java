@@ -8,6 +8,7 @@ package basica;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,8 +22,8 @@ public class Produto {
     
     
     @Id
-    @GeneratedValue
-    @Column(name = "idProduto")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "produto_id")
     private Integer id;
     private String descricao;
     private String marca;
@@ -31,13 +32,15 @@ public class Produto {
     private Integer estoqueMinimo;
     
     @ManyToOne
-    @JoinColumn(name = "idCategoria")
+    @JoinColumn(name = "cateoria_id")
     private Categoria categoria; 
     
     @ManyToOne
-    @JoinColumn(name = "idFornecedor")
+    @JoinColumn(name = "fornecedor_id")
     private Fornecedor fornecedor;
 
+    
+    
     
     public Produto(){}
     

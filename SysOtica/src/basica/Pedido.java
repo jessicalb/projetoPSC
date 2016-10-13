@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -31,14 +32,14 @@ import org.hibernate.annotations.FetchMode;
 public class Pedido {
     
     @Id
-    @GeneratedValue
-    @Column(name="idPedido")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="pedido_id")
      private Integer id;
      private Double valorTotal;
      private String formaPagamento;
      
     @ManyToOne
-    @JoinColumn(name = "idUsuario", insertable = true, updatable = true)
+    @JoinColumn(name = "usuario_id", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Funcionario Funcionario;
@@ -46,21 +47,21 @@ public class Pedido {
     
     
     @ManyToOne
-    @JoinColumn(name = "idCliente", insertable = true, updatable = true)
+    @JoinColumn(name = "cliente_id", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Cliente cliente;
     
     @ManyToOne
-    @JoinColumn(name = "idReceita", insertable = true, nullable = true)
+    @JoinColumn(name = "receita_id", insertable = true, nullable = true)
     @Fetch(FetchMode.JOIN)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Receita receita;
     
    
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="produto_pedido", joinColumns={@JoinColumn(name="idPedido")},
-    inverseJoinColumns ={@JoinColumn(name="idProduto")})
+    @JoinTable(name="produto_pedido", joinColumns={@JoinColumn(name="pedido_id")},
+    inverseJoinColumns ={@JoinColumn(name="produto_id")})
     private Collection<Produto> produtos;
     
     

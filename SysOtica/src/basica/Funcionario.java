@@ -1,10 +1,12 @@
 package basica;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import org.hibernate.annotations.NaturalId;
+
 
 @Entity
+@DiscriminatorValue("FUN")
 public class Funcionario extends Usuario {
 
    

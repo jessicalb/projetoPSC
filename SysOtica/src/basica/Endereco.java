@@ -4,9 +4,12 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Endereco implements Serializable {
@@ -14,8 +17,8 @@ public class Endereco implements Serializable {
     
 
     @Id
-    @GeneratedValue
-    @Column(name = "idEndereco")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "endereco_id")
     private Integer id;
     private String logradouro;
     private Integer numero;
@@ -24,9 +27,8 @@ public class Endereco implements Serializable {
     private String estado;
     
    
-    
-    @OneToOne(mappedBy = "endereco")
-    private Cliente cliente;
+   @OneToOne(mappedBy = "endereco")
+   private Cliente cliente;
     
     @OneToOne(mappedBy = "endereco")
     private Fornecedor fornecedor;
@@ -80,10 +82,10 @@ public class Endereco implements Serializable {
     }
 
     public Cliente getCliente() {
-        return cliente;
+       return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+   public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

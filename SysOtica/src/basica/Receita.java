@@ -5,12 +5,14 @@
  */
 package basica;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,11 +28,11 @@ import org.hibernate.annotations.FetchMode;
  * @author Jeca
  */
 @Entity
-public class Receita {
+public class Receita implements Serializable {
     
     @Id
-    @GeneratedValue
-    @Column(name = "idReceita")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "receita_id")
     private Integer id;
     private Double rc_lodesferico;
     private Double rc_loeesferico;
@@ -63,9 +65,7 @@ public class Receita {
     private Date rc_dataVencimento;
 
     @ManyToOne
-    @JoinColumn(name = "idCliente", insertable = true, updatable = true)
-    @Fetch(FetchMode.JOIN)
-    @Cascade(CascadeType.SAVE_UPDATE)
+    @JoinColumn(name= "cliente_id")
     private Cliente cliente;
     
     //uma receita pode estar em vários pedidos

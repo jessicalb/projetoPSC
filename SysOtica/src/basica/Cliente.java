@@ -5,16 +5,20 @@
  */
 package basica;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -24,16 +28,13 @@ import org.hibernate.annotations.CascadeType;
  * @author Jeca
  */
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
     
     @Id
-    @GeneratedValue
-    @Column(name= "idCliente")
-    private Integer id;
-   
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "cliente_id")
+    private Integer id;  
     private String nome;
-    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtNascimento;
     private String telefone;
@@ -46,8 +47,7 @@ public class Cliente {
     
     
     
-    @OneToOne
-    @JoinColumn(name= "idEndereco")
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
     private Endereco endereco;
     
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
@@ -56,7 +56,13 @@ public class Cliente {
     
 
     
-    public Cliente (){}
+   
+    
+    public Cliente(){
+        
+      
+    
+    }
 
     
     public Integer getId() {

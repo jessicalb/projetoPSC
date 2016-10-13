@@ -3,6 +3,7 @@ package basica;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,20 +11,20 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
+import org.hibernate.persister.entity.DiscriminatorType;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Usuario implements Serializable {
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TYPE",discriminatorType=javax.persistence.DiscriminatorType.STRING)
+public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNascimento;
-  
-    
     @Column(length =11)
     private String cpf;
     private String telefone;

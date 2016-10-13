@@ -5,9 +5,11 @@
  */
 package basica;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -17,11 +19,11 @@ import javax.persistence.OneToOne;
  * @author karlinhos
  */
 @Entity
-public class Fornecedor {
+public class Fornecedor implements Serializable {
     
     @Id
-    @GeneratedValue
-    @Column(name="idFornecedor")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="fornecedor_id")
     private Integer id;
     private String nomeFantasia;
     private String telefone;
@@ -33,7 +35,7 @@ public class Fornecedor {
     
     
     @OneToOne
-    @JoinColumn(name= "idEndereco")
+    @JoinColumn(name= "endereco_id")
     private Endereco endereco;
     
     
