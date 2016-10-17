@@ -28,7 +28,7 @@ import org.hibernate.annotations.FetchMode;
  * @author Jeca
  */
 @Entity
-public class Receita implements Serializable {
+public class Receita implements EntidadeBase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,6 +75,7 @@ public class Receita implements Serializable {
     
     public Receita(){}
     
+    @Override
     public Integer getId() {
         return id;
     }

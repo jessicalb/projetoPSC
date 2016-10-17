@@ -12,13 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
  * @author karlinhos
  */
 @Entity
-public class Produto {
+public class Produto implements EntidadeBase {
     
     
     @Id
@@ -33,10 +35,12 @@ public class Produto {
     
     @ManyToOne
     @JoinColumn(name = "cateoria_id")
+    @Cascade(CascadeType.ALL)
     private Categoria categoria; 
     
     @ManyToOne
     @JoinColumn(name = "fornecedor_id")
+    @Cascade(CascadeType.ALL)
     private Fornecedor fornecedor;
 
     
@@ -44,6 +48,7 @@ public class Produto {
     
     public Produto(){}
     
+    @Override
     public Integer getId() {
         return id;
     }

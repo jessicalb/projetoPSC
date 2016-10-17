@@ -17,7 +17,7 @@ import org.hibernate.persister.entity.DiscriminatorType;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE",discriminatorType=javax.persistence.DiscriminatorType.STRING)
-public class Usuario implements Serializable {
+public class Usuario implements EntidadeBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +32,7 @@ public class Usuario implements Serializable {
     
    
 
+    @Override
     public Integer getId() {
         return id;
     }

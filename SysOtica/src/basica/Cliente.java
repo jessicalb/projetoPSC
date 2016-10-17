@@ -28,7 +28,7 @@ import org.hibernate.annotations.CascadeType;
  * @author Jeca
  */
 @Entity
-public class Cliente implements Serializable {
+public class Cliente implements EntidadeBase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,11 +60,11 @@ public class Cliente implements Serializable {
     
     public Cliente(){
         
-      
+       endereco = new Endereco();
     
     }
 
-    
+    @Override
     public Integer getId() {
         return id;
     }

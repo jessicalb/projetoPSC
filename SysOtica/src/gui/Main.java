@@ -2,6 +2,7 @@ package gui;
 
 import DAO.CategoriaDAO;
 import DAO.ClienteDAO;
+import DAO.DAOFactory;
 import DAO.ReceitaDAO;
 import DAO.FuncionarioDAO;
 import Exceção.DAOException;
@@ -28,138 +29,69 @@ import javax.persistence.Persistence;
 
 public class Main {
 
+  
+    
+    
     public static void main(String agrs[]) throws ParseException, DAOException {
 
         
-       // FuncionarioDAO crudUsuario = new FuncionarioDAO();
-        //Funcionario f =  new Funcionario();
-       /* f.setNome("Ranni Silva");
-        f.setCargo("Vendedor");
-        f.setCpf("00011122233");
-        f.setEmail("karlos@hotmail.com");
-        f.setLogin("mago");
-        f.setSenha("0000");
-        f.setTelefone("12345678");
-        crudUsuario.salvar(f);*/
-        
-       
-        
-        //f = crudUsuario.consultarPorId(2);
-        //f.setNome("Diego Mendes");
-        
-       // crudUsuario.salvar(f);
-        
-       // System.out.println(f.getNome());
-       
-       
-       ClienteDAO crudCliente = new ClienteDAO(); 
-        Cliente cli = new Cliente();
-       /* cli.setNome("Jorge San Paolo");
-        cli.setEmail("maria@.com");
-        Endereco end = new Endereco();
-        end.setLogradouro("Amaral do Barretos");
-        end.setBairro("Pirituba");
-        end.setEstado("SP");
-        end.setCidade("são paulo");
-        end.setNumero(324);
-         ArrayList<Receita> receitas = new ArrayList<Receita>();
-        Receita rec = new Receita();
-        rec.setRc_lodaltura(1.0);
-        rec.setRc_lodcilindrico(2.0);
-        rec.setRc_nomemedico("Hermano Silva");
-        rec.setCliente(cli);
-        receitas.add(rec);
-        cli.setReceitas(receitas);
-        rec.setCliente(cli);
-        cli.setEndereco(end);
-        crudCliente.salvar(cli);*/
-        
-        
-        
-        
-        
-        cli = crudCliente.consultarPorId(2);
-         cli.setNome("Jacinto Eduardo");
-         
-         crudCliente.salvar(cli);
-         
-         
-         System.out.println(cli.getNome());
-                 
-                 
-        
-        
+        ClienteDAO dao = DAOFactory.getAlunoDAO();
         
       
-       
-        
-        
-        
-        
-        /*Cliente cli = new Cliente();
-        cli.setNome("Jorge San Paolo");
-        cli.setEmail("maria@.com");
-        Endereco end = new Endereco();
-        end.setLogradouro("Amaral do Barretos");
-        end.setBairro("Pirituba");
-        end.setEstado("SP");
-        end.setCidade("são paulo");
-        end.setNumero(324);
-        cli.setReceitas(receitas);
-        rec.setCliente(cli);
-        
-
-        cli.setEndereco(end);
-        
-   
-       
-       
-
-//System.out.println(cli.getNome());
-        
-
-
-//ReceitaDAO crudReceita = new ReceitaDAO();
-        
-       // Receita r = crudReceita.consultarPorId(3);
-        
-       // crudReceita.remover(3);
-        
-        //System.out.println(r.getRc_nomemedico());
-        
-        
-        //CategoriaDAO crudCategoria = new CategoriaDAO();
-        //Categoria cat = new Categoria();
-        //cat.setDescricao("Lentes");
-        //crudCategoria.remover(1);
-        
-        
-       
-        
-        
-        
-        
-        //crudCliente.salvar(cli);
-       // crudReceita.salvar(rec);
-        
-         //List<Receita> receitas = crudReceita.listar();
-         
-        // for(Receita r: receitas){
-         //    System.out.println(r.getRc_nomemedico());
-        // }
-       
-        //System.out.println(r.getRc_nomemedico());
-       
-        
-      // Cliente cli = crudCliente.consultarPorId(3);
+      
       
        
-      // crudCliente.remover(cli);
-       
-       // System.out.println(cli.getNome());
+        //Cliente cli = new Cliente();
+       // cli.setNome("Pedro Henrique");
+       // cli.setEmail("maria@.com");
+       // Endereco end = new Endereco();
+       // end.setLogradouro("Fracisco Travassos");
+        //end.setBairro("Pirituba");
+        //end.setEstado("SP");
+        //end.setCidade("são paulo");
+        //end.setNumero(324);
+         //ArrayList<Receita> receitas = new ArrayList<Receita>();
+       // Receita rec = new Receita();
+        //rec.setRc_lodaltura(1.0);
+        //rec.setRc_lodcilindrico(2.0);
+        //rec.setRc_nomemedico("Hermano Silva");
+        //rec.setCliente(cli);
+        //receitas.add(rec);
+        //cli.setReceitas(receitas);
+        //rec.setCliente(cli);
+        //cli.setEndereco(end);
+        //dao.inserir(cli);
+        
+       // Cliente cl = dao.consultarPorId(Cliente.class, 2);
+        
+        //cl.setNomemae("Maria das graças");
         
         
+        
+        //List<Cliente> clientes = dao.listar();
+        
+        
+        //dao.excluir(Cliente.class, 1);
+        
+       // for ( Cliente cli : clientes){
+           // System.out.println(cli.getNome());
+            
+       // }
+        
+ 
+         Funcionario fun = new Funcionario();
+         fun.setNome("Ronaldinho");
+         fun.setTelefone("44447777");
+         fun.setCpf("00011122266");
+         fun.setEmail("r10@hot.com");
+         fun.setCargo("Vendedor");
+         fun.setLogin("ronaldos");
+         fun.setSenha("12345");
          
+         FuncionarioDAO funDAO = DAOFactory.getFuncionarioDAO();
+         funDAO.inserir(fun);
+                 
+    
          /*EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatetest");
         EntityManager em = emf.createEntityManager();
         EntityTransaction et = em.getTransaction();

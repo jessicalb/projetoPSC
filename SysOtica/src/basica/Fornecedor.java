@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
  * @author karlinhos
  */
 @Entity
-public class Fornecedor implements Serializable {
+public class Fornecedor implements EntidadeBase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +41,7 @@ public class Fornecedor implements Serializable {
     
     public Fornecedor(){}
 
+    @Override
     public Integer getId() {
         return id;
     }

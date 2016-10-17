@@ -10,6 +10,7 @@ import basica.Produto;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -17,60 +18,24 @@ import javax.persistence.Query;
  *
  * @author karlinhos
  */
-public class ProdutoDAO implements IprodutoDAO{
+public class ProdutoDAO extends DAOGenerico<Produto> {
 
     
-    private EntityManagerFactory emf;
-    private EntityManager em;
+  
     
-    public ProdutoDAO(){
-    
-        emf = Persistence.createEntityManagerFactory("hibernatetest");
-        em = emf.createEntityManager();
-    }
-    
-    
-    
-    
-    @Override
-    public void salvar(Produto p) throws DAOException {
-          try{
-
-            em.getTransaction().begin();
-            em.persist(p);   
-            em.getTransaction().commit();
-
-
-            }catch(Exception e){
-                em.getTransaction().rollback();
-
-               throw new DAOException("Erro ao cadastrar fornecedor", e);
-            }
-            emf.close();
-        
-        
+    public ProdutoDAO(EntityManager manager){
+       super(manager);
         
     }
-
-    @Override
-    public void remover(Produto p) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void atualizar(Produto p) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    
+  
     public List<Produto> listar() throws DAOException {
          try{
         
-        em.getTransaction().begin();
-        Query consulta = em.createQuery("Select p from Produto p");
+        EntityTransaction  tx = getEntityManager().getTransaction();
+        Query consulta = getEntityManager().createQuery("Select p from Produto p");
         List<Produto> produtos = consulta.getResultList();
-        em.getTransaction().commit();
-        emf.close();
+       
         return produtos;
         
         }catch(Exception e){
@@ -79,19 +44,7 @@ public class ProdutoDAO implements IprodutoDAO{
         }
     }
 
-    @Override
-    public Produto consultarPorId(Integer id) throws DAOException {
-          try{
-         
-         Produto p = null;
-         p = em.find(Produto.class, id);
-         emf.close();
-         return p;
-        
-        }catch(Exception e){
-          throw new DAOException("Erro ao buscar ao Produto", e);
-        }
-    }
+    
     
     
     

@@ -7,70 +7,33 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Pedido;
-import basica.Produto;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.EntityTransaction;
+
 import javax.persistence.Query;
 
 /**
  *
  * @author karlinhos
  */
-public class PedidoDAO implements IpedidoDAO{
+public class PedidoDAO extends DAOGenerico<Pedido>{
     
-    private EntityManagerFactory emf;
-    private EntityManager em;
+
     
-    public PedidoDAO(){
+    public PedidoDAO(EntityManager manager){
+         super(manager);
+  
+    }
+
     
-        emf = Persistence.createEntityManagerFactory("hibernatetest");
-        em = emf.createEntityManager();
-    }
-
-    @Override
-    public void salvar(Pedido ped) throws DAOException {
-        try{
-
-            em.getTransaction().begin();
-            em.persist(ped);   
-            em.getTransaction().commit();
-
-
-            }catch(Exception e){
-                em.getTransaction().rollback();
-
-               throw new DAOException("Erro ao cadastrar pedido", e);
-            }
-            emf.close();
-        
-        
-        
-        
-        
-    }
-
-    @Override
-    public void remover(Pedido ped) throws DAOException {
-       
-    }
-
-    @Override
-    public void atualizar(Pedido ped) throws DAOException {
-        
-    }
-
-    @Override
     public List<Pedido> listar() throws DAOException {
          try{
         
-        em.getTransaction().begin();
-        Query consulta = em.createQuery("Select p from Pedido p");
-        List<Pedido> pedidos = consulta.getResultList();
-        em.getTransaction().commit();
-        emf.close();
-        return pedidos;
+                EntityTransaction tx = getEntityManager().getTransaction();
+                Query consulta = getEntityManager().createQuery("Select p from Pedido p");
+                List<Pedido> pedidos = consulta.getResultList();
+                return pedidos;
         
         }catch(Exception e){
             throw new DAOException("Erro ao listar os pedidos.", e);
@@ -81,20 +44,7 @@ public class PedidoDAO implements IpedidoDAO{
     
     }
 
-    @Override
-    public Pedido consultarPorId(Integer id) throws DAOException {
-            try{
-         
-         Pedido p = null;
-         p = em.find(Pedido.class, id);
-         emf.close();
-         return p;
-        
-        }catch(Exception e){
-          throw new DAOException("Erro ao buscar ao Pedido", e);
-        }
-    
-    }
+   
     
     
     

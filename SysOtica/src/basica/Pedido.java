@@ -6,7 +6,6 @@
 package basica;
 
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,8 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Fetch;
@@ -29,7 +26,7 @@ import org.hibernate.annotations.FetchMode;
  * @author karlinhos
  */
 @Entity
-public class Pedido {
+public class Pedido implements EntidadeBase {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +52,7 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "receita_id", insertable = true, nullable = true)
     @Fetch(FetchMode.JOIN)
-    @Cascade(CascadeType.SAVE_UPDATE)
+    @Cascade(CascadeType.ALL)
     private Receita receita;
     
    
@@ -67,7 +64,7 @@ public class Pedido {
     
     public Pedido(){}
     
-
+    @Override
     public Integer getId() {
         return id;
     }
