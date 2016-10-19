@@ -19,12 +19,17 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import negocio.NCliente;
+import negocio.NFuncionario;
 
 
 public class Main {
@@ -32,24 +37,20 @@ public class Main {
   
     
     
-    public static void main(String agrs[]) throws ParseException, DAOException {
+    public static void main(String agrs[]) throws ParseException, DAOException, Exception {
 
         
-        ClienteDAO dao = DAOFactory.getAlunoDAO();
-        
-      
-      
-      
        
-        //Cliente cli = new Cliente();
-       // cli.setNome("Pedro Henrique");
-       // cli.setEmail("maria@.com");
-       // Endereco end = new Endereco();
-       // end.setLogradouro("Fracisco Travassos");
-        //end.setBairro("Pirituba");
-        //end.setEstado("SP");
-        //end.setCidade("são paulo");
-        //end.setNumero(324);
+ 
+       Cliente cli = new Cliente();
+       cli.setNome("Lula");
+        cli.setEmail("karlinhos.eduardo@hotmail.com");
+       Endereco end = new Endereco();
+       end.setLogradouro("Fracisco Travassos");
+        end.setBairro("Pirituba");
+       end.setEstado("SP");
+        end.setCidade("são paulo");
+        end.setNumero(324);
          //ArrayList<Receita> receitas = new ArrayList<Receita>();
        // Receita rec = new Receita();
         //rec.setRc_lodaltura(1.0);
@@ -59,8 +60,26 @@ public class Main {
         //receitas.add(rec);
         //cli.setReceitas(receitas);
         //rec.setCliente(cli);
-        //cli.setEndereco(end);
-        //dao.inserir(cli);
+        cli.setEndereco(end);
+        
+      // ClienteDAO dao = DAOFactory.getClienteDAO();
+       NCliente nc = new NCliente();
+        nc.salvar(cli);
+      
+      // NCliente nc = new NCliente();
+       //Cliente  c = nc.consultarPorId(cli, 10);
+       //c.setNome("Carlos Amarilla");
+       //nc.atualizar(c);
+       //nc.remover(c);
+       
+      //List<Cliente> clientes = nc.listar();
+      
+       // for (Cliente cl : clientes) {
+      //       System.out.println(cl.getNome());
+      //  }
+        
+        
+       
         
        // Cliente cl = dao.consultarPorId(Cliente.class, 2);
         
@@ -79,17 +98,33 @@ public class Main {
        // }
         
  
-         Funcionario fun = new Funcionario();
-         fun.setNome("Ronaldinho");
-         fun.setTelefone("44447777");
-         fun.setCpf("00011122266");
-         fun.setEmail("r10@hot.com");
-         fun.setCargo("Vendedor");
-         fun.setLogin("ronaldos");
-         fun.setSenha("12345");
+        /*Funcionario fun = new Funcionario();
+        fun.setNome("Carlos Silva");
+        fun.setLogin("magodoboladao");
+        fun.setSenha("007007");
+        fun.setCargo("novo");
          
-         FuncionarioDAO funDAO = DAOFactory.getFuncionarioDAO();
-         funDAO.inserir(fun);
+       
+         
+         NFuncionario nf = new NFuncionario();
+        // nf.salvar(fun);
+         
+        // nf.excluir(fun);
+         
+         Funcionario f1 = nf.consultarPorId(fun, 1);
+         //f1.setNome("Mainha Gata");
+         //nf.atualizar(f1);
+         
+         System.out.println(f1.getNome());
+         
+         
+         //List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+        // funcionarios = nf.listar();
+         
+        // for(int i = 0; i < funcionarios.size(); i++){
+         
+       //  System.out.println(funcionarios.get(i).getNome());
+       //  }
                  
     
          /*EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatetest");

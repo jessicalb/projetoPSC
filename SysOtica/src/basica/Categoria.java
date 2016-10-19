@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * @author karlinhos
  */
 @Entity
-public class Categoria implements EntidadeBase {
+public class Categoria implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class Categoria implements EntidadeBase {
     public Categoria(){}
     
     
-    @Override
+    
     public Integer getId() {
         return id;
     }
@@ -47,8 +47,6 @@ public class Categoria implements EntidadeBase {
     }
     
     
-    
-    
-    
+   
     
 }

@@ -1,17 +1,17 @@
 package basica;
 
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+
 
 @Entity
-public class Endereco implements EntidadeBase {
+public class Endereco implements Serializable {
 
     
 
@@ -36,7 +36,7 @@ public class Endereco implements EntidadeBase {
     public Endereco(){}
     
     
-    @Override
+    
     public Integer getId() {
         return id;
     }

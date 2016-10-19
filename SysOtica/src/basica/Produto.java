@@ -5,6 +5,7 @@
  */
 package basica;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.CascadeType;
  * @author karlinhos
  */
 @Entity
-public class Produto implements EntidadeBase {
+public class Produto implements  Serializable {
     
     
     @Id
@@ -48,7 +49,7 @@ public class Produto implements EntidadeBase {
     
     public Produto(){}
     
-    @Override
+   
     public Integer getId() {
         return id;
     }

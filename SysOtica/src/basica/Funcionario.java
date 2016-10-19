@@ -13,7 +13,7 @@ public class Funcionario extends Usuario {
     
     private String Cargo;
    
-    //@NaturalId  //indica que o login deve ser unico, não podendo haver outro usuario com o mesmo.
+    @Column(length = 10, nullable = false)
     private String login;
     @Column(length = 10, nullable = false)
     private String senha;

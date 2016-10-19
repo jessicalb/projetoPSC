@@ -8,17 +8,14 @@ package basica;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -28,16 +25,19 @@ import org.hibernate.annotations.CascadeType;
  * @author Jeca
  */
 @Entity
-public class Cliente implements EntidadeBase {
+public class Cliente implements  Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "cliente_id")
-    private Integer id;  
+    private Integer id;
+    @Column(nullable = false)
     private String nome;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dtNascimento;
+    @Column(length = 10)
     private String telefone;
+    @Column(length = 11)
     private String cpf;
     private String email;
     private String profissao;
@@ -64,7 +64,7 @@ public class Cliente implements EntidadeBase {
     
     }
 
-    @Override
+    
     public Integer getId() {
         return id;
     }

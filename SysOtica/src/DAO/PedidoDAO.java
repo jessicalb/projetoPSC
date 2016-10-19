@@ -7,6 +7,7 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Pedido;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -39,7 +40,21 @@ public class PedidoDAO extends DAOGenerico<Pedido>{
             throw new DAOException("Erro ao listar os pedidos.", e);
         
         }
+         
+     }
         
+           public Pedido consultarPorId(Pedido ped, Serializable id) {
+               ped = null;
+		try {
+			ped = getEntityManager().find(Pedido.class, id);
+                        
+		}catch (RuntimeException re){
+
+			re.printStackTrace();
+                }
+                return ped;
+            }
+         
        
     
     }
@@ -48,4 +63,4 @@ public class PedidoDAO extends DAOGenerico<Pedido>{
     
     
     
-}
+

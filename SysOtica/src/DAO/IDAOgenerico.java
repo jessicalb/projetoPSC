@@ -8,7 +8,7 @@ package DAO;
 import java.io.Serializable;
 import java.util.List;
 import Exceção.DAOException;
-import basica.EntidadeBase;
+
 
 
 /**
@@ -21,10 +21,8 @@ public interface IDAOgenerico<T> {
 
     public  T alterar(T t)throws DAOException;
 
-    public void excluir(T t, Serializable id) throws DAOException;
+    public void excluir(T t) throws DAOException;
 
-    public T consultarPorId(Serializable id)throws DAOException;
 
-  
     
 }

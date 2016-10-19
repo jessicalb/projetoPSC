@@ -7,6 +7,7 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Fornecedor;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -40,6 +41,18 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> {
         
         }
     
+    }
+    
+     public Fornecedor consultarPorId(Fornecedor forn, Serializable id) {
+               forn = null;
+		try {
+			forn = getEntityManager().find(Fornecedor.class, id);
+                        
+		}catch (RuntimeException re){
+
+			re.printStackTrace();
+                }
+                return forn;
     }
     
 }

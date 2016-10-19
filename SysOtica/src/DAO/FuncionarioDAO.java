@@ -7,6 +7,7 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Funcionario;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -24,9 +25,8 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
        super(manager);
      
     }
-    
-    
-   
+
+  
 
   
     public List<Funcionario> listar() throws DAOException {
@@ -45,5 +45,22 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
         }
         
     }
+
+   
+    public Funcionario consultarPorId(Funcionario f, Serializable id) {
+               f = null;
+		try {
+			f = getEntityManager().find(Funcionario.class, id);
+                        
+		}catch (RuntimeException re){
+
+			re.printStackTrace();
+                }
+                return f;
+    }
+
+    
+
+   
     
 }

@@ -7,11 +7,10 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Receita;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -43,6 +42,18 @@ public class ReceitaDAO extends DAOGenerico<Receita> {
         
     }
 
+           public Receita consultarPorId(Receita r, Serializable id) {
+               r = null;
+		try {
+			r = getEntityManager().find(Receita.class, id);
+                        
+		}catch (RuntimeException re){
+
+			re.printStackTrace();
+                }
+                return r;
+            }
+         
   
     
 }

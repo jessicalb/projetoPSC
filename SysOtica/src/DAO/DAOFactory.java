@@ -25,7 +25,7 @@ public class DAOFactory {
 		}
 	}
 	
-	public static ClienteDAO getAlunoDAO(){
+	public static ClienteDAO getClienteDAO(){
 		ClienteDAO cliDAO = new ClienteDAO(manager);
 		return cliDAO;
 	}

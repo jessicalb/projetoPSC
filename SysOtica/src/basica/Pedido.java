@@ -5,6 +5,7 @@
  */
 package basica;
 
+import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ import org.hibernate.annotations.FetchMode;
  * @author karlinhos
  */
 @Entity
-public class Pedido implements EntidadeBase {
+public class Pedido implements  Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +39,7 @@ public class Pedido implements EntidadeBase {
     @ManyToOne
     @JoinColumn(name = "usuario_id", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
-    @Cascade(CascadeType.SAVE_UPDATE)
+    @Cascade(CascadeType.ALL)
     private Funcionario Funcionario;
     
     
@@ -46,7 +47,7 @@ public class Pedido implements EntidadeBase {
     @ManyToOne
     @JoinColumn(name = "cliente_id", insertable = true, updatable = true)
     @Fetch(FetchMode.JOIN)
-    @Cascade(CascadeType.SAVE_UPDATE)
+    @Cascade(CascadeType.ALL)
     private Cliente cliente;
     
     @ManyToOne
@@ -64,7 +65,7 @@ public class Pedido implements EntidadeBase {
     
     public Pedido(){}
     
-    @Override
+   
     public Integer getId() {
         return id;
     }

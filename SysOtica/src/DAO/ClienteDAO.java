@@ -7,6 +7,7 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Cliente;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -40,6 +41,20 @@ public class ClienteDAO extends DAOGenerico<Cliente> {
         }
         
     }
+    
+    public Cliente consultarPorId(Cliente cli, Serializable id) {
+               cli = null;
+		try {
+			cli = getEntityManager().find(Cliente.class, id);
+                        
+		}catch (RuntimeException re){
+
+			re.printStackTrace();
+                }
+                return cli;
+    }
+
+   
 
     
     

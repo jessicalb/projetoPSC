@@ -7,6 +7,7 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Produto;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,7 +44,18 @@ public class ProdutoDAO extends DAOGenerico<Produto> {
         
         }
     }
+        
+         public Produto consultarPorId(Produto p, Serializable id) {
+               p = null;
+		try {
+			p = getEntityManager().find(Produto.class, id);
+                        
+		}catch (RuntimeException re){
 
+			re.printStackTrace();
+                }
+                return p;
+    }
     
     
     

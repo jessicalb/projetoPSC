@@ -1,37 +1,34 @@
 
 package negocio;
 
+import DAO.DAOFactory;
 import DAO.FornecedorDAO;
-import DAO.IfornecedorDAO;
+
 import Exceção.DAOException;
 import basica.Fornecedor;
 import java.util.List;
 
 
-public class NFornecedor implements IfornecedorDAO{
+public class NFornecedor {
 
-    @Override
+     private FornecedorDAO dao;
+    
+    public NFornecedor(){
+    
+      dao = DAOFactory.getFornecedorDAO();
+    
+    }
+    String emails = "^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$";
+   
     public void salvar(Fornecedor f) throws DAOException {
         
-        
-           if(f.getId().equals("")==true){
- throw new Error("Informar Nome Fantasia");   
-       }
-       
-       if(f.getId()==null){
- throw new Error("O Campo Nome Fantasia não pode ser vazio");   
-       }
-       
-       if(f.getId()< 0){
-           throw new Error("O codigo deve ser superior a 0"); 
-       }
-        
+     
         if(f.getNomeFantasia().trim().equals("")==true){
- throw new Error("Informar Nome Fantasia");   
+             throw new Error("Informar Nome Fantasia");   
        }
        
        if(f.getNomeFantasia()==null){
- throw new Error("O Campo Nome Fantasia não pode ser vazio");   
+            throw new Error("O Campo Nome Fantasia não pode ser vazio");   
        }
        
        
@@ -39,6 +36,11 @@ public class NFornecedor implements IfornecedorDAO{
           throw new Error("Informar Telefone"); 
        }
        
+       if(f.getTelefone().length() < 10){
+           throw new Error("Numero de telefone inválido"); 
+       }
+    
+      
        if(f.getTelefone()==null){
           throw new Error("O campo Telefone não pode ser vazio"); 
        }
@@ -50,6 +52,11 @@ public class NFornecedor implements IfornecedorDAO{
        if(f.getEmail()==null){
           throw new Error("O campo Email não pode ser vazio"); 
        }
+       
+       if(!f.getEmail().matches(emails)){
+          throw new Error("Email incorreto!");   
+       }
+           
        
        if(f.getNomeRepresentante().trim().equals("")==true){
           throw new Error("Informar Nome Representante"); 
@@ -68,53 +75,48 @@ public class NFornecedor implements IfornecedorDAO{
        }
        
        
-       if(f.getCnpj().length()!=18){
-            throw new Error("O Cnpj devera ter 18 caracteres"); 
+       if(f.getCnpj().length()!=14){
+            throw new Error("O Cnpj devera ter 14 caracteres"); 
        }
        
-       FornecedorDAO dao = new FornecedorDAO();
-       dao.salvar(f);
+       
+       dao.inserir(f);
          
     }
 
-    @Override
+    
     public void remover(Fornecedor f) throws DAOException {
        
         if(f.getId()<=0 ){
             throw new Error("O codigo do funcionario deve ser superior a zero");
     }
-        FornecedorDAO dao = new FornecedorDAO();
-        dao.remover(f);
+        
+        dao.excluir(f);
     }
 
-    @Override
+    
     public void atualizar(Fornecedor f) throws DAOException {
         
-        if(f.getId().equals("")==true){
- throw new Error("Informar Nome Fantasia");   
-       }
-       
-       if(f.getId()==null){
- throw new Error("O Campo Nome Fantasia não pode ser vazio");   
-       }
-       
+      
+
        if(f.getId()< 0){
            throw new Error("O codigo deve ser superior a 0"); 
        }
         
         if(f.getNomeFantasia().trim().equals("")==true){
- throw new Error("Informar Nome Fantasia");   
+            throw new Error("Informar Nome Fantasia");   
        }
        
        if(f.getNomeFantasia()==null){
- throw new Error("O Campo Nome Fantasia não pode ser vazio");   
+            throw new Error("O Campo Nome Fantasia não pode ser vazio");   
        }
        
        
-       if(f.getTelefone().trim().equals("")==true){
-          throw new Error("Informar Telefone"); 
+      if(f.getTelefone().length() < 10){
+           throw new Error("Numero de telefone inválido"); 
        }
-       
+    
+      
        if(f.getTelefone()==null){
           throw new Error("O campo Telefone não pode ser vazio"); 
        }
@@ -125,6 +127,11 @@ public class NFornecedor implements IfornecedorDAO{
        
        if(f.getEmail()==null){
           throw new Error("O campo Email não pode ser vazio"); 
+       }
+       
+       if(!f.getEmail().matches(emails)){
+          throw new Error("Email incorreto!");   
+       
        }
        
        if(f.getNomeRepresentante().trim().equals("")==true){
@@ -144,23 +151,26 @@ public class NFornecedor implements IfornecedorDAO{
        }
        
        
-       if(f.getCnpj().length()!=18){
-            throw new Error("O Cnpj devera ter 18 caracteres"); 
+       if(f.getCnpj().length()!=14){
+            throw new Error("O Cnpj devera ter 14 caracteres"); 
        }
+        dao.alterar(f);
        
-       FornecedorDAO dao = new FornecedorDAO();
-       dao.atualizar(f);
     }
 
-    @Override
+   
     public List<Fornecedor> listar() throws DAOException {
-    FornecedorDAO dao = new FornecedorDAO();
+   
     return dao.listar();
     }
 
-    @Override
-    public Fornecedor consultarPorId(Integer id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   
+    public Fornecedor consultarPorId(Fornecedor f,Integer id) throws DAOException {
+        
+    return dao.consultarPorId(f, id);
+    
+    
+    
     }
     
 }

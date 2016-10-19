@@ -6,11 +6,14 @@
 package DAO;
 
 import Exceção.DAOException;
-import basica.EntidadeBase;
+
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction; 
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 
@@ -18,15 +21,37 @@ import javax.persistence.Query;
  *
  * @author karlinhos
  */
-public class DAOGenerico<T extends EntidadeBase>  {
+public class DAOGenerico<T>  {
     
     private EntityManager em;
+    private Class classePersistente;
+
    
 
-    public DAOGenerico(EntityManager em){
-        this.setEntityManager(em);
+   // public DAOGenerico(EntityManager em){
+      //  this.setEntityManager(em);
      
-    }
+   // }
+    
+    
+  
+ /**
+  * Contrutor que guarda o tipo atual da classe T.
+  */
+            public DAOGenerico() {
+                    
+                 this.classePersistente = (Class) ((ParameterizedType) getClass()
+                   .getGenericSuperclass()).getActualTypeArguments()[0];
+                }
+    
+             public DAOGenerico(EntityManager entityManager){
+                    this.setEntityManager(entityManager);
+             
+             }
+    
+    
+    
+    
 
     private void setEntityManager(EntityManager em) {
        this.em = em;
@@ -35,6 +60,18 @@ public class DAOGenerico<T extends EntidadeBase>  {
     public EntityManager getEntityManager(){
      return em;
     }
+      /**
+	 * Busca a classe persistente do objeto utilizado na classe.
+	 * 
+	 * @return classe persistente
+	 */
+   
+     protected final Class<T> getClassePersistente() {
+		return classePersistente;
+	}
+    
+    
+    
     /**
 	 * Salva o objeto atual na base de dados.
 	 * 
@@ -45,9 +82,9 @@ public class DAOGenerico<T extends EntidadeBase>  {
        EntityTransaction tx = getEntityManager().getTransaction();		
 		try {
 			tx.begin();
-                        if(t.getId() == null){
+         
 			getEntityManager().persist(t);
-                        }
+                        
 			tx.commit();
 			System.out.println(" salvo com sucesso");
 		} catch (Exception e) {
@@ -69,29 +106,31 @@ public class DAOGenerico<T extends EntidadeBase>  {
        try{ 
         EntityTransaction tx = getEntityManager().getTransaction();
 		tx.begin();
-		if(t.getId() != null){
+		
 		t = getEntityManager().merge(t);
-                }
+                
 		tx.commit();
-		         System.err.println("Alterado com sucesso");
+		         System.out.println("Alterado com sucesso");
 		return  t;
        }catch(Exception e)
        {
-         throw new DAOException("Erro ao alterar cliente");
+         throw new DAOException("Erro ao alterar cliente", e);
        }
         
     }
 
     
-    public void excluir(Class<T> classe, Serializable id) throws DAOException {
+    public void excluir(T t) throws DAOException {
         
         
         try{
-        EntityTransaction tx = getEntityManager().getTransaction();
-		T t = getEntityManager().find(classe, id);
+              EntityTransaction tx = getEntityManager().getTransaction();
                 tx.begin();
-		getEntityManager().remove(t);
-
+		
+                //Este merge foi incluido para permitir a exclusao de objetos no estado Detached
+                t = getEntityManager().merge(t);
+                
+                getEntityManager().remove(t);
                 tx.commit();
                 System.out.println(" removido com sucesso");
         }catch(Exception e){
@@ -99,9 +138,27 @@ public class DAOGenerico<T extends EntidadeBase>  {
             }
         
     }
-        
-    
+                //inserir colecao de objetos
+        public final void inserirColecao(Collection<T> colecao) {
+		try {
+			EntityTransaction tx = getEntityManager().getTransaction();
+			tx.begin();
 
+			for (T t : colecao) {
+				getEntityManager().persist(t);	
+			}
+			
+			tx.commit();
+			
+			System.out.println(classePersistente.getSimpleName() + " salvos com sucesso: " + colecao.size());
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+	}
+    
+    
+    
+    
     /**
 	 * Busca o objeto uma vez passado sua chave como parâmetro.
 	 * 
@@ -109,17 +166,20 @@ public class DAOGenerico<T extends EntidadeBase>  {
 	 *            identificador
 	 * @return Objeto do tipo T
          */
-    public T consultarPorId(Class<T> classe, Serializable id) throws DAOException {
+   /* public T consultarPorId(Serializable id ) throws DAOException {
 
                      T tipo = null;
 		try {
-			tipo = (T) getEntityManager().find(classe, id);
-                        return tipo;
-		}catch (Exception e){
-                      throw new DAOException("Erro ao buscar Cliente", e);
+			tipo = (T) getEntityManager().find(getClassePersistente(), id);
+                        
+		}catch (RuntimeException re){
+
+			re.printStackTrace();
                 }
+                return tipo;
+                 
       
-    }
+    }*/
     
     
 

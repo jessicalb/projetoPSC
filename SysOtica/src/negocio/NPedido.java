@@ -1,48 +1,62 @@
 
 package negocio;
 
-import DAO.IpedidoDAO;
+
+import DAO.DAOFactory;
 import DAO.PedidoDAO;
 import Exceção.DAOException;
 import basica.Pedido;
 import java.util.List;
 
 
-public class NPedido implements IpedidoDAO{
+public class NPedido {
 
-    @Override
+        private PedidoDAO dao;
+        
+        public NPedido(){
+
+              dao = DAOFactory.getPedidoDAO();
+       }
+    
+    
     public void salvar(Pedido ped) throws DAOException {
         
-         if(ped.getId().equals("")==true){
- throw new Error("Informar Id");   
+       if(ped.getCliente().getId()==null){
+          throw new Error("Para realizar a venda, inclua ao menos um cliente."); 
        }
        
-       if(ped.getId()==null){
- throw new Error("O Campo Id não pode ser vazio");   
+       if(ped.getProdutos().isEmpty()){
+           throw new Error("Seleciona pelomenos um produto para este pedido");        
        }
-       
+        
+        
        if(ped.getFormaPagamento().equals("")==true){
- throw new Error("Informar Forma de Pagamento");   
+            throw new Error("Informar Forma de Pagamento");   
        }
        
        if(ped.getFormaPagamento()==null){
- throw new Error("O Campo Forma de Pagamento não pode ser vazio");   
+             throw new Error("O Campo Forma de Pagamento não pode ser vazio");   
        }
        
        if(ped.getValorTotal().equals("")==true){
- throw new Error("Informar valor total");   
+            throw new Error("Informar valor total");   
        }
        
        if(ped.getValorTotal()==null){
- throw new Error("O Campo valor total não pode ser vazio");   
+            throw new Error("O Campo valor total não pode ser vazio");   
+       }
+       
+       if(ped.getValorTotal() <= 0){
+           throw new Error("O valor total não pode ser menor ou igual a zero"); 
+       
        }
         
-        PedidoDAO dao = new PedidoDAO();
-        dao.salvar(ped);
+        
+        dao.inserir(ped);
         
     }
 
-    @Override
+    
     public void remover(Pedido ped) throws DAOException {
         
          if(ped.getId()<=0 ){
@@ -50,49 +64,66 @@ public class NPedido implements IpedidoDAO{
             
         }
          
-         PedidoDAO dao = new PedidoDAO();
-         dao.remover(ped);
+        
+         dao.excluir(ped);
     }
 
-    @Override
+    
     public void atualizar(Pedido ped) throws DAOException {
-if(ped.getId().equals("")==true){
- throw new Error("Informar Id");   
+
+        if(ped.getId() <= 0){
+            
+            throw new Error("Informar Id");   
        }
        
        if(ped.getId()==null){
- throw new Error("O Campo Id não pode ser vazio");   
+            throw new Error("O Campo Id não pode ser vazio");   
+       }
+       if(ped.getCliente().getId()==null){
+          throw new Error("Para realizar a venda, inclua ao menos um cliente."); 
        }
        
+       if(ped.getProdutos().isEmpty()){
+           throw new Error("Seleciona pelomenos um produto para este pedido");        
+       }
+       
+       
        if(ped.getFormaPagamento().equals("")==true){
- throw new Error("Informar Forma de Pagamento");   
+             throw new Error("Informar Forma de Pagamento");   
        }
        
        if(ped.getFormaPagamento()==null){
- throw new Error("O Campo Forma de Pagamento não pode ser vazio");   
+            throw new Error("O Campo Forma de Pagamento não pode ser vazio");   
        }
        
        if(ped.getValorTotal().equals("")==true){
- throw new Error("Informar valor total");   
+            throw new Error("Informar valor total");   
        }
        
        if(ped.getValorTotal()==null){
- throw new Error("O Campo valor total não pode ser vazio");   
+            throw new Error("O Campo valor total não pode ser vazio");   
        }
        
-       PedidoDAO dao = new PedidoDAO();
-       dao.atualizar(ped);
-            }
+          if(ped.getValorTotal() <= 0){
+           throw new Error("O valor total não pode ser menor ou igual a zero"); 
+       
+       }
+       
+       
+       dao.alterar(ped);
+            
+    }
 
-    @Override
+   
     public List<Pedido> listar() throws DAOException {
-        PedidoDAO dao = new PedidoDAO();
+        
         return dao.listar();
     }
 
-    @Override
-    public Pedido consultarPorId(Integer id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Pedido consultarPorId(Pedido ped, Integer id) throws DAOException {
+        
+        return dao.consultarPorId(ped, id);
     }
     
 }

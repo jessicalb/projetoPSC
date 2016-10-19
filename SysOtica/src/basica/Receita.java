@@ -28,7 +28,7 @@ import org.hibernate.annotations.FetchMode;
  * @author Jeca
  */
 @Entity
-public class Receita implements EntidadeBase {
+public class Receita implements  Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,14 +54,18 @@ public class Receita implements EntidadeBase {
     private Double rc_loednp;
     private Double rc_poddnp;
     private Double rc_poednp;
+    @Column(nullable = false)
     private String rc_nomemedico;
+    @Column(nullable = true)
     private String rc_observacoes;
     
     
     @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(nullable = false)
     private Date rc_dataEntrada;
     
     @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(nullable = false, updatable = true)
     private Date rc_dataVencimento;
 
     @ManyToOne
@@ -75,7 +79,7 @@ public class Receita implements EntidadeBase {
     
     public Receita(){}
     
-    @Override
+    
     public Integer getId() {
         return id;
     }

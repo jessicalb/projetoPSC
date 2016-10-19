@@ -7,6 +7,7 @@ package DAO;
 
 import Exceção.DAOException;
 import basica.Categoria;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -40,7 +41,18 @@ public class CategoriaDAO extends DAOGenerico<Categoria> {
         
         }
     }
+    
+       public Categoria consultarPorId(Categoria cat, Serializable id) {
+               cat = null;
+		try {
+			cat = getEntityManager().find(Categoria.class, id);
+                        
+		}catch (RuntimeException re){
 
+			re.printStackTrace();
+                }
+                return cat;
+    }
     
     
     
