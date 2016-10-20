@@ -1,11 +1,11 @@
 
-package negocio;
+package control;
 
-import DAO.DAOFactory;
-import DAO.FornecedorDAO;
+import control.DAOFactory;
+import control.FornecedorDAO;
 
 import Exceção.DAOException;
-import basica.Fornecedor;
+import model.Fornecedor;
 import java.util.List;
 
 

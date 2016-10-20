@@ -1,11 +1,11 @@
 
-package negocio;
+package control;
 
-import DAO.ClienteDAO;
-import DAO.DAOFactory;
+import control.ClienteDAO;
+import control.DAOFactory;
 
 import Exceção.DAOException;
-import basica.Cliente;
+import model.Cliente;
 import java.io.Serializable;
 import java.util.List;
 

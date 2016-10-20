@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package negocio;
+package control;
 
-import DAO.DAOFactory;
-import DAO.ReceitaDAO;
+import control.DAOFactory;
+import control.ReceitaDAO;
 import Exceção.DAOException;
-import basica.Receita;
+import model.Receita;
 
 /**
  *
