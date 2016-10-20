@@ -1,20 +1,20 @@
-package gui;
+﻿package gui;
 
-import DAO.CategoriaDAO;
-import DAO.ClienteDAO;
-import DAO.DAOFactory;
-import DAO.ReceitaDAO;
-import DAO.FuncionarioDAO;
+import control.CategoriaDAO;
+import control.ClienteDAO;
+import control.DAOFactory;
+import control.ReceitaDAO;
+import control.FuncionarioDAO;
 import Exceção.DAOException;
-import basica.Funcionario;
-import basica.Categoria;
-import basica.Cliente;
-import basica.Endereco;
-import basica.Fornecedor;
-import basica.Pedido;
-import basica.Produto;
-import basica.Receita;
-import basica.Usuario;
+import model.Funcionario;
+import model.Categoria;
+import model.Cliente;
+import model.Endereco;
+import model.Fornecedor;
+import model.Pedido;
+import model.Produto;
+import model.Receita;
+import model.Usuario;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,6 +32,7 @@ import javax.persistence.Persistence;
 import negocio.NCliente;
 import negocio.NFuncionario;
 import negocio.NReceita;
+
 
 
 public class Main {

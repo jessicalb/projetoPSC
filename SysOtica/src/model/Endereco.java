@@ -1,4 +1,4 @@
-package basica;
+package model;
 
 
 import java.io.Serializable;

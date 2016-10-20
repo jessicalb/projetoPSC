@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package control;
 
 import Exceção.DAOException;
-import basica.Cliente;
+import model.Funcionario;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -17,23 +17,27 @@ import javax.persistence.Query;
  *
  * @author karlinhos
  */
-public class ClienteDAO extends DAOGenerico<Cliente> {
-
-
-    // construtor que faz referencia ao
-    public ClienteDAO(EntityManager manager) {
-        super(manager);
-    }
+public class FuncionarioDAO extends DAOGenerico<Funcionario> {
     
   
-    public List<Cliente> listar() throws DAOException {
+    
+    public FuncionarioDAO(EntityManager manager){
+       super();
+     
+    }
+
+  
+
+  
+    public List<Funcionario> listar() throws DAOException {
         try{
         
             EntityTransaction tx = getEntityManager().getTransaction();
             tx.begin();
-            Query consulta = getEntityManager().createQuery("Select cli from Cliente cli");
-             List<Cliente> clientes = consulta.getResultList();
-            return clientes;
+            Query consulta = getEntityManager().createQuery("Select f from Funcionario f");
+            List<Funcionario> funcionarios = consulta.getResultList();
+ 
+        return funcionarios;
         
         }catch(Exception e){
             throw new DAOException("Erro ao listar os clientes.", e);
@@ -41,21 +45,22 @@ public class ClienteDAO extends DAOGenerico<Cliente> {
         }
         
     }
-    
-    public Cliente consultarPorId(Cliente cli, Integer id) {
-               cli = null;
+
+   
+    public Funcionario consultarPorId(Funcionario f, Serializable id) {
+               f = null;
 		try {
-			cli = getEntityManager().find(Cliente.class, id);
+			f = getEntityManager().find(Funcionario.class, id);
                         
 		}catch (RuntimeException re){
 
 			re.printStackTrace();
                 }
-                return cli;
+                return f;
     }
 
-   
-
     
+
+   
     
 }

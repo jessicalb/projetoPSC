@@ -1,5 +1,6 @@
-package basica;
+package model;
 
+import model.Usuario;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

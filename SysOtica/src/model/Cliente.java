@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package basica;
+package model;
 
+import model.Receita;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;

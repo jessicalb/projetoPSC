@@ -1,11 +1,11 @@
 
-package negocio;
+package control;
 
 
-import DAO.DAOFactory;
-import DAO.PedidoDAO;
+import control.DAOFactory;
+import control.PedidoDAO;
 import Exceção.DAOException;
-import basica.Pedido;
+import model.Pedido;
 import java.util.List;
 
 

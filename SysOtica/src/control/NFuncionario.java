@@ -1,10 +1,10 @@
 
-package negocio;
+package control;
 
-import DAO.DAOFactory;
-import DAO.FuncionarioDAO;
+import control.DAOFactory;
+import control.FuncionarioDAO;
 import Exceção.DAOException;
-import basica.Funcionario;
+import model.Funcionario;
 import java.io.Serializable;
 import java.util.List;
 
