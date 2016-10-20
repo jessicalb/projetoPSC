@@ -22,7 +22,7 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
   
     
     public FuncionarioDAO(EntityManager manager){
-       super(manager);
+       super();
      
     }
 

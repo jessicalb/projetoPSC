@@ -51,7 +51,7 @@ public class NCliente {
        }
        
        
-       if(cli.getCpf().trim().equals("")==true){
+       /*if(cli.getCpf().trim().equals("")==true){
           throw new Error("Informar Cpf"); 
        }
        
@@ -108,7 +108,7 @@ public class NCliente {
        }
           
           if(cli.getNomepai()==null){
- throw new Error("O Campo Nome do pai não pode ser vazio");
+            throw new Error("O Campo Nome do pai não pode ser vazio");
         }
           
           if(cli.getObservacoes().trim().equals("")==true){
@@ -116,8 +116,8 @@ public class NCliente {
        }
         
           if(cli.getObservacoes()==null){
- throw new Error("O Campo observações não pode ser vazio");
-        }
+            throw new Error("O Campo observações não pode ser vazio");
+        }*/
       
        dao.inserir(cli);
        return true;
@@ -229,7 +229,7 @@ public class NCliente {
     }
 
     
-    public Cliente consultarPorId(Cliente cli, Serializable id) throws DAOException {
+    public Cliente consultarPorId(Cliente cli, int id) throws DAOException {
        
         return dao.consultarPorId(cli, id);
     }

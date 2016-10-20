@@ -22,7 +22,7 @@ public class CategoriaDAO extends DAOGenerico<Categoria> {
    
     
     public CategoriaDAO(EntityManager manager){
-        super(manager);
+        super();
         
         }
     

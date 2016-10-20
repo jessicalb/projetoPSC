@@ -22,7 +22,7 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> {
      
     
     public FornecedorDAO(EntityManager manager){
-        super(manager);
+        super();
     
        
     }

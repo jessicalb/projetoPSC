@@ -23,7 +23,7 @@ public class PedidoDAO extends DAOGenerico<Pedido>{
 
     
     public PedidoDAO(EntityManager manager){
-         super(manager);
+         super();
   
     }
 

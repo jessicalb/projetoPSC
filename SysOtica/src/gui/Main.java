@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -30,42 +31,70 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import negocio.NCliente;
 import negocio.NFuncionario;
+import negocio.NReceita;
 
 
 public class Main {
 
   
+   
+    
+    
+    
     
     
     public static void main(String agrs[]) throws ParseException, DAOException, Exception {
 
         
-       
+        
+        
+        
+       SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+       Date data = sdf.parse("20/10/2016");
+       Date data2 = sdf.parse("22/10/2016");
  
        Cliente cli = new Cliente();
-       cli.setNome("Lula");
-        cli.setEmail("karlinhos.eduardo@hotmail.com");
-       Endereco end = new Endereco();
-       end.setLogradouro("Fracisco Travassos");
-        end.setBairro("Pirituba");
-       end.setEstado("SP");
-        end.setCidade("são paulo");
-        end.setNumero(324);
-         //ArrayList<Receita> receitas = new ArrayList<Receita>();
-       // Receita rec = new Receita();
-        //rec.setRc_lodaltura(1.0);
-        //rec.setRc_lodcilindrico(2.0);
-        //rec.setRc_nomemedico("Hermano Silva");
-        //rec.setCliente(cli);
-        //receitas.add(rec);
-        //cli.setReceitas(receitas);
-        //rec.setCliente(cli);
-        cli.setEndereco(end);
+       //cli.setNome("Jessica Vicenza");
+      // cli.setEmail("karlinhos.eduardo@hotmail.com");
+      // Endereco end = new Endereco();
+       //end.setLogradouro("Fracisco Travassos");
+      // end.setBairro("Pirituba");
+       //end.setEstado("SP");
+       //end.setCidade("são paulo");
+      // end.setNumero(324);
+       ArrayList<Receita> receitas = new ArrayList<Receita>();
+       //Receita rec = new Receita();
+       //rec.setRc_lodaltura(1.0);
+       //rec.setRc_lodcilindrico(2.0);
+       //rec.setRc_nomemedico("Hermano Silva");
+       //rec.setCliente(cli);
+       //rec.setRc_dataEntrada(data);
+       //rec.setRc_dataVencimento(data2);
+       //receitas.add(rec);
+      // cli.setReceitas(receitas);
+      // rec.setCliente(cli);
+      //cli.setEndereco(end);
         
-      // ClienteDAO dao = DAOFactory.getClienteDAO();
-       NCliente nc = new NCliente();
-        nc.salvar(cli);
+      ClienteDAO dao = DAOFactory.getClienteDAO();
+      NCliente nc = new NCliente();
+     // nc.salvar(cli);
+        
+      Receita rec1 = new Receita();  
+      Cliente c = nc.consultarPorId(cli, 3);
+      rec1.setCliente(c);
+      rec1.setRc_nomemedico("Francisco Nabisco");
+      rec1.setRc_dataEntrada(data);
+      rec1.setRc_dataVencimento(data2);
+      receitas.add(rec1);
       
+      
+      ReceitaDAO rdao = DAOFactory.getReceitaDAO();
+      NReceita nr = new NReceita();
+      nr.salvar(rec1);
+      
+      
+        // System.out.print(c.getNome());
+        
       // NCliente nc = new NCliente();
        //Cliente  c = nc.consultarPorId(cli, 10);
        //c.setNome("Carlos Amarilla");
