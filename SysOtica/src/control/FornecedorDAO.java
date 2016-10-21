@@ -22,7 +22,7 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> {
      
     
     public FornecedorDAO(EntityManager manager){
-        super();
+        super(manager);
     
        
     }
@@ -43,17 +43,7 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> {
     
     }
     
-     public Fornecedor consultarPorId(Fornecedor forn, Serializable id) {
-               forn = null;
-		try {
-			forn = getEntityManager().find(Fornecedor.class, id);
-                        
-		}catch (RuntimeException re){
-
-			re.printStackTrace();
-                }
-                return forn;
-    }
+ 
     
 }
  

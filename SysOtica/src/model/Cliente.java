@@ -38,7 +38,7 @@ public class Cliente implements  Serializable{
     private Date dtNascimento;
     @Column(length = 10)
     private String telefone;
-    @Column(length = 11)
+    @Column(length = 11, nullable = false)
     private String cpf;
     private String email;
     private String profissao;

@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import model.Funcionario;
 
 /**
  *
@@ -23,7 +24,7 @@ public class CategoriaDAO extends DAOGenerico<Categoria> {
    
     
     public CategoriaDAO(EntityManager manager){
-        super();
+        super(manager);
         
         }
     
@@ -43,18 +44,7 @@ public class CategoriaDAO extends DAOGenerico<Categoria> {
         }
     }
     
-       public Categoria consultarPorId(Categoria cat, Serializable id) {
-               cat = null;
-		try {
-			cat = getEntityManager().find(Categoria.class, id);
-                        
-		}catch (RuntimeException re){
+    
 
-			re.printStackTrace();
-                }
-                return cat;
-    }
-    
-    
     
 }

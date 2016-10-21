@@ -73,20 +73,16 @@ public class NPedido {
 
         if(ped.getId() <= 0){
             
-            throw new Error("Informar Id");   
+            throw new Error("Erro ao encontrar pedido");   
        }
        
        if(ped.getId()==null){
             throw new Error("O Campo Id não pode ser vazio");   
        }
-       if(ped.getCliente().getId()==null){
-          throw new Error("Para realizar a venda, inclua ao menos um cliente."); 
-       }
-       
+ 
        if(ped.getProdutos().isEmpty()){
            throw new Error("Seleciona pelomenos um produto para este pedido");        
        }
-       
        
        if(ped.getFormaPagamento().equals("")==true){
              throw new Error("Informar Forma de Pagamento");   
@@ -121,9 +117,18 @@ public class NPedido {
     }
 
     
-    public Pedido consultarPorId(Pedido ped, Integer id) throws DAOException {
+    public Pedido consultarPorId(int id) throws DAOException {
+         Pedido p = null;
         
-        return dao.consultarPorId(ped, id);
+          try{
+                p = dao.buscarPorChave(id);
+          
+               
+          } catch(Exception e){
+                      throw new Error("Erro ao buscar pedido por id" + e.getMessage()); 
+                     }
+           return p;
+        
     }
     
 }

@@ -22,8 +22,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void removerCategoria(Integer id) throws Exception {
-        ncategoria.remover(id);
+    public void removerCategoria(Categoria cat) throws Exception {
+        ncategoria.remover(cat);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void consultarCategoriaId(Categoria cat, Integer id) throws Exception {
-       // Categoria consultarPorId = ncategoria.consultarPorId(cat, id);
+    public void consultarCategoriaId(int id) throws Exception {
+       ncategoria.consultarPorId(id);
     }
 
     @Override
@@ -60,8 +60,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void consultarCliente(Cliente cli, Serializable id) throws Exception {
-        ncliente.remover(cli);
+    public void consultarCliente(int id) throws Exception {
+        ncliente.consultarPorId(id);
     }
 
     @Override
@@ -87,8 +87,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void consultarFornecedor(Fornecedor f, Integer id) throws Exception {
-        nfornecedor.consultarPorId(f, id);
+    public void consultarFornecedor(int id) throws Exception {
+        nfornecedor.consultarPorId(id);
     }
 
     @Override
@@ -115,8 +115,13 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void consultarFuncionario(Funcionario f, Serializable id) throws Exception {
-        nfuncionario.consultarPorId(f, id);
+    public void consultarFuncionario(int id) throws Exception {
+        nfuncionario.consultarPorId(id);
+        
+    }
+    
+    public List<Funcionario> consultarPorNome(String nome)throws Exception{
+        return  nfuncionario.consultarPorNome(nome);
     }
 
     @Override
@@ -143,8 +148,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void consultarPedido(Pedido ped, Integer id) throws Exception {
-        npedido.consultarPorId(ped, id);
+    public void consultarPedido(int id) throws Exception {
+        npedido.consultarPorId(id);
     }
 
     @Override
@@ -171,8 +176,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void consultarProduto(Produto prod, Integer id) throws Exception {
-        nproduto.consultarPorId(prod, id);
+    public void consultarProduto(int id) throws Exception {
+        nproduto.consultarPorId(id);
     }
 
     @Override
@@ -183,8 +188,29 @@ public class Fachada implements IFachada {
     //Receita
     NReceita nreceita = new NReceita();
     @Override
+   
     public void salvarReceita(Receita rec) throws Exception {
         nreceita.salvar(rec);
+    }
+
+    @Override
+    public void removerReceita(Receita rec) throws Exception {
+       nreceita.Excluir(rec);
+    }
+
+    @Override
+    public void atualizarReceita(Receita rec) throws Exception {
+       nreceita.Alterar(rec);
+    }
+
+    @Override
+    public void consultarReceita(int id) throws Exception {
+       nreceita.consultarPorId(id);
+    }
+
+    @Override
+    public List<Receita> listarReceita() throws Exception {
+       return nreceita.listar();
     }
      
     

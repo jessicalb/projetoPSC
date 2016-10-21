@@ -47,9 +47,14 @@ public class NCategoria {
     }
 
     
-    public void remover(Integer id) throws DAOException {
-       
+    public void remover(Categoria cat) throws DAOException {
+        if(cat.getId() <= 0){
         
+          throw new Error("Categoria não encontrada");
+        }
+        else{
+        dao.excluir(cat);
+        }
     }
 
     
@@ -79,10 +84,17 @@ public class NCategoria {
     }
 
    
-    public Categoria consultarPorId(Categoria cat,Integer id) throws DAOException {
-      
+    public Categoria consultarPorId(int id) throws DAOException {
+        Categoria cat = null;
         
-       return  dao.consultarPorId(cat, id);
+          try{ 
+               cat = dao.buscarPorChave(id);
+          }catch(Exception e){
+             throw new DAOException ("Erro ao buscar categoria por id"  + e.getMessage());
+          }
+        
+        
+       return  cat;
     }
     
 }

@@ -23,7 +23,7 @@ public class PedidoDAO extends DAOGenerico<Pedido>{
 
     
     public PedidoDAO(EntityManager manager){
-         super();
+         super(manager);
   
     }
 
@@ -43,18 +43,7 @@ public class PedidoDAO extends DAOGenerico<Pedido>{
          
      }
         
-           public Pedido consultarPorId(Pedido ped, Serializable id) {
-               ped = null;
-		try {
-			ped = getEntityManager().find(Pedido.class, id);
-                        
-		}catch (RuntimeException re){
-
-			re.printStackTrace();
-                }
-                return ped;
-            }
-         
+     
        
     
     }

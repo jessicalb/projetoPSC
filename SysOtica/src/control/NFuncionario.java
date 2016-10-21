@@ -29,7 +29,7 @@ public class NFuncionario {
             throw new Error("O Campo Cargo não pode ser vazio");   
        }
        
-       /* if(f.getLogin().trim().equals("")==true){
+        if(f.getLogin().trim().equals("")==true){
             throw new Error("Informar Login");   
        }
        
@@ -45,9 +45,9 @@ public class NFuncionario {
             throw new Error("O Campo Senha não pode ser vazio");   
        }
        
-       if(f.getSenha().length()!=6){
+       if(f.getSenha().length() < 5){
           throw new Error("A senha só pode conter 6 caracteres");  
-       }*/
+       }
        
        this.fdao.inserir(f);
        return f;
@@ -58,7 +58,12 @@ public class NFuncionario {
 
     
     public Funcionario atualizar(Funcionario f) throws DAOException {
-       /* if(f.getCargo().trim().equals("")==true){
+       
+        if(f.getId() <= 0){
+           throw new Error("Funcionario não encontrado");
+        }
+        
+        if(f.getCargo().trim().equals("")==true){
             throw new Error("Informar Cargo");   
        }
        
@@ -84,7 +89,7 @@ public class NFuncionario {
        
        if(f.getSenha().length()!=6){
           throw new Error("A senha só pode conter 6 caracteres");  
-       }*/
+       }
        
        fdao.alterar(f);
        return f;
@@ -97,17 +102,33 @@ public class NFuncionario {
 
     
     public List<Funcionario> listar() throws DAOException {
-    
         return fdao.listar();
                 
     }
 
   
-    public Funcionario consultarPorId (Funcionario f, Serializable id) throws DAOException {
+    public Funcionario consultarPorId (int id) throws DAOException {
+         Funcionario fun = null;
         
+          try{
+                fun = fdao.buscarPorChave(id);
+          
+               
+          } catch(Exception e){
+                      throw new Error("Erro ao buscar funcionario por id" + e.getMessage()); 
+                     }
+           return fun;
  
-        return fdao.consultarPorId(f, id);
+        
            
+    }
+    public List<Funcionario> consultarPorNome(String nome) throws DAOException{
+      
+       
+        
+        return fdao.buscarPorNome(nome);
+        
+        
     }
     
 }

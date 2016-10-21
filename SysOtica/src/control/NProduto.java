@@ -170,9 +170,18 @@ public class NProduto {
     }
 
    
-    public Produto consultarPorId(Produto p, Integer id) throws DAOException {
+    public Produto consultarPorId(int id) throws DAOException {
+         Produto p = null;
         
-        return dao.consultarPorId(p, id);
+          try{
+                p = dao.buscarPorChave(id);
+          
+               
+          } catch(Exception e){
+                      throw new Error("Erro ao buscar produto por id" + e.getMessage()); 
+                     }
+           return p;
+        
         
         
     }

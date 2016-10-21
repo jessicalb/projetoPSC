@@ -16,9 +16,11 @@ public class NCliente {
 
   
      private ClienteDAO dao;
+    
      
       public NCliente(){
        dao = DAOFactory.getClienteDAO();
+       
           
       }
    
@@ -50,7 +52,29 @@ public class NCliente {
         throw new Error("O Campo nome não pode ser vazio");   
        }
        
+       if(cli.getEndereco() == null){
+         throw new Error ("Favor, preencher os campos de endereço");
+       }
        
+       if(cli.getEndereco().getLogradouro().isEmpty()){
+          throw new Error ("Insira o nome da rua");
+       }
+       
+       if(cli.getEndereco().getBairro().isEmpty()){
+         throw new Error ("Insira o seu bairro!");
+       }
+       
+       if(cli.getEndereco().getCidade().isEmpty()){
+         throw new Error("insira a sua cidade");
+       }
+       if(cli.getEndereco().getNumero().equals("")){
+         throw new Error("campo numero não pode ser vazio");
+       }
+       
+       if(cli.getEndereco().getEstado().isEmpty()){
+         throw new Error("Insira o Estado que você reside");
+       }
+           
        /*if(cli.getCpf().trim().equals("")==true){
           throw new Error("Informar Cpf"); 
        }
@@ -115,9 +139,7 @@ public class NCliente {
           throw new Error("Informar Observações"); 
        }
         
-          if(cli.getObservacoes()==null){
-            throw new Error("O Campo observações não pode ser vazio");
-        }*/
+       */
       
        dao.inserir(cli);
        return true;
@@ -173,7 +195,7 @@ public class NCliente {
         }
         
         if(cli.getTelefone()==null){
- throw new Error("O Campo Telefone não pode ser vazio");  
+            throw new Error("O Campo Telefone não pode ser vazio");  
         }
         
         
@@ -182,7 +204,7 @@ public class NCliente {
        }
         
         if(cli.getEmail()==null){
- throw new Error("O Campo email nãopode ser vazio");
+            throw new Error("O Campo email nãopode ser vazio");
         }
         
        
@@ -191,31 +213,27 @@ public class NCliente {
        }
          
          if(cli.getProfissao()==null){
- throw new Error("O Campo profissão não pode ser vazio");
+            throw new Error("O Campo profissão não pode ser vazio");
         }
          
           if(cli.getNomemae().trim().equals("")==true){
-          throw new Error("Informar Nome mãe"); 
+            throw new Error("Informar Nome mãe"); 
        }
           if(cli.getNomemae()==null){
- throw new Error("O Campo nome da mãe não pode ser vazio");
+            throw new Error("O Campo nome da mãe não pode ser vazio");
         }
           
           if(cli.getNomepai().trim().equals("")==true){
-          throw new Error("Informar nome Pai"); 
+                throw new Error("Informar nome Pai"); 
        }
           
           if(cli.getNomepai()==null){
- throw new Error("O Campo Nome do pai não pode ser vazio");
+            throw new Error("O Campo Nome do pai não pode ser vazio");
         }
           
-          if(cli.getObservacoes().trim().equals("")==true){
-          throw new Error("Informar Observações"); 
-       }
+       
         
-          if(cli.getObservacoes()==null){
- throw new Error("O Campo observações não pode ser vazio");
-        }
+        
       
         dao.alterar(cli);
         return cli;
@@ -229,10 +247,22 @@ public class NCliente {
     }
 
     
-    public Cliente consultarPorId(Cliente cli, int id) throws DAOException {
-       
-        return dao.consultarPorId(cli, id);
+    public Cliente consultarPorId(int id) throws DAOException {
+          Cliente cli = null;
+        
+          try{
+                cli = dao.buscarPorChave(id);
+          
+               
+          } catch(Exception e){
+                      throw new Error("Erro ao buscar cliente por id" + e.getMessage()); 
+                     }
+           return cli;
+ 
     }
+    
+    
+    
 
   
 

@@ -14,7 +14,7 @@ public class Funcionario extends Usuario {
     
     private String Cargo;
    
-    @Column(length = 10, nullable = false)
+    @Column(length = 10, nullable = false, unique = true)
     private String login;
     @Column(length = 10, nullable = false)
     private String senha;

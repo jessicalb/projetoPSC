@@ -6,7 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Column;

@@ -42,20 +42,6 @@ public class ClienteDAO extends DAOGenerico<Cliente> {
         
     }
     
-    public Cliente consultarPorId(Cliente cli, Integer id) {
-               cli = null;
-		try {
-			cli = getEntityManager().find(Cliente.class, id);
-                        
-		}catch (RuntimeException re){
+ 
 
-			re.printStackTrace();
-                }
-                return cli;
-    }
-
-   
-
-    
-    
 }

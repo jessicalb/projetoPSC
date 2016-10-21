@@ -23,7 +23,7 @@ public class ProdutoDAO extends DAOGenerico<Produto> {
   
     
     public ProdutoDAO(EntityManager manager){
-       super();
+       super(manager);
         
     }
     
@@ -43,19 +43,5 @@ public class ProdutoDAO extends DAOGenerico<Produto> {
         }
     }
         
-         public Produto consultarPorId(Produto p, Serializable id) {
-               p = null;
-		try {
-			p = getEntityManager().find(Produto.class, id);
-                        
-		}catch (RuntimeException re){
-
-			re.printStackTrace();
-                }
-                return p;
-    }
-    
-    
-    
-    
+   
 }

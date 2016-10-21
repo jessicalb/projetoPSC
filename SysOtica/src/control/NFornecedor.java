@@ -18,6 +18,7 @@ public class NFornecedor {
       dao = DAOFactory.getFornecedorDAO();
     
     }
+    // valida o email atraves do regex
     String emails = "^[\\w-]+(\\.[\\w-]+)*@([\\w-]+\\.)+[a-zA-Z]{2,7}$";
    
     public void salvar(Fornecedor f) throws DAOException {
@@ -88,7 +89,7 @@ public class NFornecedor {
     public void remover(Fornecedor f) throws DAOException {
        
         if(f.getId()<=0 ){
-            throw new Error("O codigo do funcionario deve ser superior a zero");
+            throw new Error("Fornecedor não encotrado");
     }
         
         dao.excluir(f);
@@ -165,9 +166,18 @@ public class NFornecedor {
     }
 
    
-    public Fornecedor consultarPorId(Fornecedor f,Integer id) throws DAOException {
+    public Fornecedor consultarPorId(int id) throws DAOException {
+         Fornecedor f = null;
         
-    return dao.consultarPorId(f, id);
+          try{ 
+               f = dao.buscarPorChave(id);
+          }catch(Exception e){
+             throw new DAOException ("Erro ao buscar fornecedor pelo id"  + e.getMessage());
+          }
+        
+        
+       return  f;
+    
     
     
     

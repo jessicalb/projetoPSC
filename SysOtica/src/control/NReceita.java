@@ -1,9 +1,14 @@
-﻿/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
+
 package control;
+
+import control.DAOFactory;
+import control.ReceitaDAO;
+import Exceção.DAOException;
+import java.util.Date;
+import model.Receita;
+import java.util.List;
 
 
 
@@ -131,9 +136,18 @@ public class NReceita {
        }
 
     
-     public Receita consultarPorId(Receita r, int id) throws DAOException {
+     public Receita consultarPorId(int id) throws DAOException {
+        Receita r = null;
+        
+          try{
+                r = dao.buscarPorChave(id);
+          
+               
+          } catch(Exception e){
+                      throw new Error("Erro ao buscar receita por id" + e.getMessage()); 
+                     }
+           return r;
        
-        return dao.consultarPorId(r, id);
      }
 
      

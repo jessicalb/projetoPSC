@@ -22,7 +22,7 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
   
     
     public FuncionarioDAO(EntityManager manager){
-       super();
+       super(manager);
      
     }
 
@@ -45,22 +45,23 @@ public class FuncionarioDAO extends DAOGenerico<Funcionario> {
         }
         
     }
-
-   
-    public Funcionario consultarPorId(Funcionario f, Serializable id) {
-               f = null;
-		try {
-			f = getEntityManager().find(Funcionario.class, id);
-                        
-		}catch (RuntimeException re){
-
-			re.printStackTrace();
-                }
-                return f;
+    
+      public List<Funcionario> buscarPorNome(String nome) throws DAOException{
+      EntityTransaction tx = getEntityManager().getTransaction();
+      tx.begin();
+      Query consulta = getEntityManager().createQuery("Select f from Funcionario f where f.nome = :nome");
+      consulta.setParameter("nome", nome);
+      List<Funcionario> funcionarios = consulta.getResultList(); 
+    
+         if(!funcionarios.isEmpty()){
+          return funcionarios;
+         }
+         else{
+         
+          return null;
+         }
+    
     }
 
-    
 
-   
-    
 }
