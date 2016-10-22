@@ -3,11 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package model;
 
+import model.FuncionarioDAO;
+import model.FornecedorDAO;
 import control.ProdutoDAO;
 import control.ReceitaDAO;
-import control.PedidoDAO;
+import model.PedidoDAO;
+import model.PedidoDAO;
+import control.ProdutoDAO;
+import control.ReceitaDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

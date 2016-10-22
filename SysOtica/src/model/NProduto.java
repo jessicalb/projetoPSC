@@ -1,12 +1,12 @@
 
-package control;
+package model;
 
 
-import control.DAOFactory;
 import control.ProdutoDAO;
 import Exceção.DAOException;
 import model.Produto;
 import java.util.List;
+import model.Funcionario;
 
 
 public class NProduto {
@@ -182,6 +182,15 @@ public class NProduto {
                      }
            return p;
         
+        
+        
+    }
+    
+    public List<Produto> consultarPorNomeProduto(String nome) throws DAOException{
+      
+       
+        
+        return dao.buscarPorNomeProduto(nome);
         
         
     }

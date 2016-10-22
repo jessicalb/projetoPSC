@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package model;
 
+import model.DAOGenerico;
 import Exceção.DAOException;
 import model.Cliente;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import model.Funcionario;
 
 /**
  *
@@ -40,6 +42,24 @@ public class ClienteDAO extends DAOGenerico<Cliente> {
         
         }
         
+    }
+    
+    
+    public List<Cliente> buscarPorNomeCliente(String nome) throws DAOException{
+      EntityTransaction tx = getEntityManager().getTransaction();
+      tx.begin();
+      Query consulta = getEntityManager().createQuery("Select c from Funcionario c where c.nome = :nome");
+      consulta.setParameter("nome", nome);
+      List<Cliente> cliente = consulta.getResultList(); 
+    
+         if(!cliente.isEmpty()){
+          return cliente;
+         }
+         else{
+         
+          return null;
+         }
+    
     }
     
  

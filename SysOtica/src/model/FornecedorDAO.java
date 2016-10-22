@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package model;
 
 import Exceção.DAOException;
 import model.Fornecedor;
@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import model.Funcionario;
 
 /**
  *
@@ -40,6 +41,23 @@ public class FornecedorDAO extends DAOGenerico<Fornecedor> {
             throw new DAOException("Erro ao listar os fornecedores.", e);
         
         }
+    
+    }
+    
+    public List<Fornecedor> buscarPorNomeFornecedor(String nome) throws DAOException{
+      EntityTransaction tx = getEntityManager().getTransaction();
+      tx.begin();
+      Query consulta = getEntityManager().createQuery("Select fo from Fornecedor fo where fo.nome = :nome");
+      consulta.setParameter("nome", nome);
+      List<Fornecedor> fornecedor = consulta.getResultList(); 
+    
+         if(!fornecedor.isEmpty()){
+          return fornecedor;
+         }
+         else{
+         
+          return null;
+         }
     
     }
     

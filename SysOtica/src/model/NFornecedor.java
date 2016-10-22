@@ -1,12 +1,11 @@
 
-package control;
+package model;
 
-import control.DAOFactory;
-import control.FornecedorDAO;
 
 import Exceção.DAOException;
 import model.Fornecedor;
 import java.util.List;
+import model.Funcionario;
 
 
 public class NFornecedor {
@@ -181,6 +180,15 @@ public class NFornecedor {
     
     
     
+    }
+    
+    public List<Fornecedor> consultarPorNomeFornecedor(String nome) throws DAOException{
+      
+       
+        
+        return dao.buscarPorNomeFornecedor(nome);
+        
+        
     }
     
 }

@@ -1,8 +1,6 @@
 
-package control;
+package model;
 
-import control.ClienteDAO;
-import control.DAOFactory;
 
 import Exceção.DAOException;
 import model.Cliente;
@@ -11,6 +9,7 @@ import java.util.List;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import model.Funcionario;
 
 public class NCliente {
 
@@ -259,6 +258,15 @@ public class NCliente {
                      }
            return cli;
  
+    }
+    
+    public List<Cliente> consultarPorNomeCliente(String nome) throws DAOException{
+      
+       
+        
+        return dao.buscarPorNomeCliente(nome);
+        
+        
     }
     
     

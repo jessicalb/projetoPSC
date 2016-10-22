@@ -1,8 +1,6 @@
 
-package control;
+package model;
 
-import control.DAOFactory;
-import control.FuncionarioDAO;
 import Exceção.DAOException;
 import model.Funcionario;
 import java.io.Serializable;

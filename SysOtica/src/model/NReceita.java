@@ -1,14 +1,14 @@
 
 
 
-package control;
+package model;
 
-import control.DAOFactory;
 import control.ReceitaDAO;
 import Exceção.DAOException;
 import java.util.Date;
 import model.Receita;
 import java.util.List;
+import model.Funcionario;
 
 
 
@@ -149,6 +149,15 @@ public class NReceita {
            return r;
        
      }
+     
+     public List<Receita> consultarPorNomeReceita(String nome) throws DAOException{
+      
+       
+        
+        return dao.buscarPorNomeReceita(nome);
+        
+        
+    }
 
      
     

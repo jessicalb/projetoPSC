@@ -2,11 +2,11 @@ package gui;
 
 
 
-import control.CategoriaDAO;
-import control.ClienteDAO;
-import control.DAOFactory;
+import model.CategoriaDAO;
+import model.ClienteDAO;
+import model.DAOFactory;
 import control.ReceitaDAO;
-import control.FuncionarioDAO;
+import model.FuncionarioDAO;
 import Exceção.DAOException;
 import model.Funcionario;
 import model.Categoria;
@@ -31,9 +31,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import control.NCliente;
-import control.NFuncionario;
-import control.NReceita;
+import model.NCliente;
+import model.NFuncionario;
+import model.NReceita;
 
 
 

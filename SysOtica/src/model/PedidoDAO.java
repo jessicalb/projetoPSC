@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package model;
 
 import Exceção.DAOException;
 import model.Pedido;
@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import javax.persistence.Query;
+import model.Funcionario;
 
 /**
  *
@@ -42,6 +43,23 @@ public class PedidoDAO extends DAOGenerico<Pedido>{
         }
          
      }
+    
+    public List<Pedido> buscarPorNomePedido(String nome) throws DAOException{
+      EntityTransaction tx = getEntityManager().getTransaction();
+      tx.begin();
+      Query consulta = getEntityManager().createQuery("Select p from Pedido p where p.nome = :nome");
+      consulta.setParameter("nome", nome);
+      List<Pedido> pedido = consulta.getResultList(); 
+    
+         if(!pedido.isEmpty()){
+          return pedido;
+         }
+         else{
+         
+          return null;
+         }
+    
+    }
         
      
        

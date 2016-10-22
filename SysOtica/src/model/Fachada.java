@@ -1,6 +1,11 @@
 
-package control;
+package model;
 
+import model.NFuncionario;
+import model.NCategoria;
+import model.NFornecedor;
+import model.NCliente;
+import model.IFachada;
 import model.Categoria;
 import model.Cliente;
 import model.Fornecedor;
@@ -211,6 +216,37 @@ public class Fachada implements IFachada {
     @Override
     public List<Receita> listarReceita() throws Exception {
        return nreceita.listar();
+    }
+
+    @Override
+    public List<Categoria> consultarPorNomeCategoria(String nome) throws Exception {
+        return ncategoria.consultarPorNomeCategoria(nome);
+        
+    }
+
+    @Override
+    public List<Cliente> consultarPorNomeCliente(String nome) throws Exception {
+        return ncliente.consultarPorNomeCliente(nome);
+    }
+
+    @Override
+    public List<Fornecedor> consultarPorNomeFornecedor(String nome) throws Exception {
+        return nfornecedor.consultarPorNomeFornecedor(nome);
+    }
+
+    @Override
+    public List<Pedido> consultarPorNomePedido(String nome) throws Exception {
+        return npedido.consultarPorNomePedido(nome);
+    }
+
+    @Override
+    public List<Produto> consultarPorNomeProduto(String nome) throws Exception {
+        return nproduto.consultarPorNomeProduto(nome);
+    }
+
+    @Override
+    public List<Funcionario> consultarPorNomeReceita(String nome) throws Exception {
+        return nfuncionario.consultarPorNome(nome);
     }
      
     

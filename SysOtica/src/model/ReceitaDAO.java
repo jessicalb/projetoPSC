@@ -5,6 +5,7 @@
  */
 package control;
 
+import model.DAOGenerico;
 import Exceção.DAOException;
 import model.Receita;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import model.Funcionario;
 
 /**
  *
@@ -53,6 +55,23 @@ public class ReceitaDAO extends DAOGenerico<Receita> {
                 }
                 return r;
             }
+           
+           public List<Receita> buscarPorNomeReceita(String nome) throws DAOException{
+      EntityTransaction tx = getEntityManager().getTransaction();
+      tx.begin();
+      Query consulta = getEntityManager().createQuery("Select r from Receita r where r.nome = :nome");
+      consulta.setParameter("nome", nome);
+      List<Receita> receita = consulta.getResultList(); 
+    
+         if(!receita.isEmpty()){
+          return receita;
+         }
+         else{
+         
+          return null;
+         }
+    
+    }
          
   
     

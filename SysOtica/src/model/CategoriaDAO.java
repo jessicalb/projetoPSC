@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package control;
+package model;
 
-import control.DAOGenerico;
+import model.DAOGenerico;
 import Exceção.DAOException;
 import model.Categoria;
 import java.io.Serializable;
@@ -42,6 +42,24 @@ public class CategoriaDAO extends DAOGenerico<Categoria> {
             throw new DAOException("Erro ao listar as categorias.", e);
         
         }
+    }
+    
+    
+    public List<Categoria> buscarPorNomeCategoria(String nome) throws DAOException{
+      EntityTransaction tx = getEntityManager().getTransaction();
+      tx.begin();
+      Query consulta = getEntityManager().createQuery("Select c from Categoria c where c.nome = :nome");
+      consulta.setParameter("nome", nome);
+      List<Categoria> categoria = consulta.getResultList(); 
+    
+         if(!categoria.isEmpty()){
+          return categoria;
+         }
+         else{
+         
+          return null;
+         }
+    
     }
     
     

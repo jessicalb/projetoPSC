@@ -1,12 +1,11 @@
 
-package control;
+package model;
 
-import control.CategoriaDAO;
-import control.DAOFactory;
 
 import Exceção.DAOException;
 import model.Categoria;
 import java.util.List;
+import model.Funcionario;
 
 
 public class NCategoria {
@@ -95,6 +94,15 @@ public class NCategoria {
         
         
        return  cat;
+    }
+    
+    public List<Categoria> consultarPorNomeCategoria(String nome) throws DAOException{
+      
+       
+        
+        return dao.buscarPorNomeCategoria(nome);
+        
+        
     }
     
 }

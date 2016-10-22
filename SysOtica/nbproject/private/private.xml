@@ -2,26 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/IFachada.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/ClienteDAO.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/Fachada.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/CategoriaDAO.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/NCliente.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/model/Cliente.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/NFuncionario.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/ReceitaDAO.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/ProdutoDAO.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/FornecedorDAO.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/NPedido.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/DAOGenerico.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/gui/Main.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/NReceita.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/NProduto.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/NFornecedor.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/FuncionarioDAO.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/PedidoDAO.java</file>
-            <file>file:/C:/Users/karlinhos/Desktop/repPSC/projetoPSC/SysOtica/src/control/NCategoria.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

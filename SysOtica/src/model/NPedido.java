@@ -1,12 +1,12 @@
 
-package control;
+package model;
 
 
-import control.DAOFactory;
-import control.PedidoDAO;
+import model.PedidoDAO;
 import Exceção.DAOException;
 import model.Pedido;
 import java.util.List;
+import model.Funcionario;
 
 
 public class NPedido {
@@ -128,6 +128,15 @@ public class NPedido {
                       throw new Error("Erro ao buscar pedido por id" + e.getMessage()); 
                      }
            return p;
+        
+    }
+    
+    public List<Pedido> consultarPorNomePedido(String nome) throws DAOException{
+      
+       
+        
+        return dao.buscarPorNomePedido(nome);
+        
         
     }
     

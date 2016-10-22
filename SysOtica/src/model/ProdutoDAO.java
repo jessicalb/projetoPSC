@@ -5,6 +5,7 @@
  */
 package control;
 
+import model.DAOGenerico;
 import Exceção.DAOException;
 import model.Produto;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import model.Funcionario;
 
 /**
  *
@@ -41,6 +43,23 @@ public class ProdutoDAO extends DAOGenerico<Produto> {
             throw new DAOException("Erro ao listar os produtos.", e);
         
         }
+    }
+    
+    public List<Produto> buscarPorNomeProduto(String nome) throws DAOException{
+      EntityTransaction tx = getEntityManager().getTransaction();
+      tx.begin();
+      Query consulta = getEntityManager().createQuery("Select prod from Produto prod where prod.nome = :nome");
+      consulta.setParameter("nome", nome);
+      List<Produto> produto = consulta.getResultList(); 
+    
+         if(!produto.isEmpty()){
+          return produto;
+         }
+         else{
+         
+          return null;
+         }
+    
     }
         
    
